@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------
+   Brand tokens
+   Sourced from brand/brand-tokens.css in the approved asset package.
+   These are mapped into Tailwind's theme below so utilities like
+   bg-oc-blue / text-oc-ink / rounded-oc-lg are available everywhere.
+   ------------------------------------------------------------------------- */
+:root {
+  --oc-blue: #1677ff;
+  --oc-blue-hover: #0b68eb;
+  --oc-navy: #06142b;
+  --oc-deep-navy: #0b2a52;
+  --oc-ink: #101828;
+  --oc-muted: #667085;
+  --oc-canvas: #ffffff;
+  --oc-soft: #f3f7ff;
+  --oc-line: #d6e4ff;
+
+  --oc-radius-sm: 12px;
+  --oc-radius-md: 20px;
+  --oc-radius-lg: 32px;
+  --oc-shadow-soft: 0 16px 48px rgba(6, 20, 43, 0.08);
+}
+
+@theme inline {
+  --color-oc-blue: var(--oc-blue);
+  --color-oc-blue-hover: var(--oc-blue-hover);
+  --color-oc-navy: var(--oc-navy);
+  --color-oc-deep-navy: var(--oc-deep-navy);
+  --color-oc-ink: var(--oc-ink);
+  --color-oc-muted: var(--oc-muted);
+  --color-oc-canvas: var(--oc-canvas);
+  --color-oc-soft: var(--oc-soft);
+  --color-oc-line: var(--oc-line);
+
+  --radius-oc-sm: var(--oc-radius-sm);
+  --radius-oc-md: var(--oc-radius-md);
+  --radius-oc-lg: var(--oc-radius-lg);
+
+  --shadow-oc-soft: var(--oc-shadow-soft);
+
+  --font-sans: var(--font-geist-sans);
+
+  --container-8xl: 90rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--oc-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--oc-canvas);
+    color: var(--oc-ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Visible, on-brand keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--oc-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--oc-line);
+    color: var(--oc-navy);
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--oc-ink);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--oc-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
