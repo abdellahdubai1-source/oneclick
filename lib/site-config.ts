@@ -1,9 +1,7 @@
 /**
  * Single source of truth for brand + copy constants.
- * Sourced directly from the approved asset package:
- * content/site-config.json and content/site-copy.md
- * Do not invent or alter copy here — this file only re-expresses the
- * approved content as typed constants for the components to consume.
+ * The core brand copy is sourced from the approved asset package. Campaign
+ * details are added only when explicitly supplied by OneClick Digital Studio.
  */
 
 export const siteConfig = {
@@ -19,10 +17,57 @@ export const siteConfig = {
   primaryTagline: "Websites That Turn Visitors Into Customers.",
   descriptor: "Websites / Systems / Digital Growth",
   navigation: [
+    { label: "Offer", href: "#offer" },
     { label: "Services", href: "#services" },
     { label: "Process", href: "#process" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
+  ],
+} as const;
+
+/**
+ * Fixed promotional campaign requested on 5 September 2026.
+ * The ISO deadline includes the UAE UTC+4 offset so it never resets when a
+ * visitor refreshes the page or opens it in another time zone.
+ */
+export const offerConfig = {
+  deadline: "2026-09-10T23:59:59+04:00",
+  deadlineLabel: "10 September 2026, 11:59 PM UAE time",
+  packages: [
+    {
+      name: "Website + Admin Dashboard",
+      description:
+        "A professional business website with an admin dashboard for managing your content.",
+      originalPrice: "AED 3,000",
+      offerPrice: "AED 1,500",
+      saving: "Save AED 1,500",
+      features: [
+        "Custom business website",
+        "Content management dashboard",
+        "Mobile-first, responsive design",
+        "Deployment and handover support",
+      ],
+      whatsappUrl:
+        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Website%20%2B%20Admin%20Dashboard%20offer%20for%20AED%201%2C500.",
+      featured: true,
+    },
+    {
+      name: "Showcase Website",
+      description:
+        "A clean, professional website that presents your business, services, and contact details.",
+      originalPrice: "AED 1,500",
+      offerPrice: "AED 750",
+      saving: "Save AED 750",
+      features: [
+        "Custom showcase website",
+        "Clear services and contact sections",
+        "Mobile-first, responsive design",
+        "Deployment and handover support",
+      ],
+      whatsappUrl:
+        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Showcase%20Website%20offer%20for%20AED%20750.",
+      featured: false,
+    },
   ],
 } as const;
 

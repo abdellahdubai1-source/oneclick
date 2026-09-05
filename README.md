@@ -54,6 +54,13 @@ reads from it.
 The header, footer, and browser favicon use the supplied PNG logo files exactly as provided (no
 recoloring, redrawing, or vectorizing). Source files live in `public/brand/`.
 
+## Five-day offer countdown
+
+The limited offer section is rendered by `components/LimitedOffer.tsx`. Its fixed UAE deadline,
+prices, package details, and package-specific WhatsApp messages are managed in `offerConfig` inside
+`lib/site-config.ts`. The deadline does not restart when a visitor refreshes the page. Once it passes,
+the countdown reaches zero and the offer buttons change to **Offer Ended**.
+
 ## Deployment
 
 This is a static Next.js site with no server-side data dependencies — it deploys as-is to Vercel, or any

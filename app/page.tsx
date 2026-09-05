@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { LimitedOffer } from "@/components/LimitedOffer";
 import { Services } from "@/components/Services";
 import { Process } from "@/components/Process";
 import { WhyOneClick } from "@/components/WhyOneClick";
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <LimitedOffer />
         <Services />
         <Process />
         <WhyOneClick />
