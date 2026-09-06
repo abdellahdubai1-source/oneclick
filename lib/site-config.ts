@@ -26,29 +26,29 @@ export const siteConfig = {
 } as const;
 
 /**
- * Fixed promotional campaign requested on 5 September 2026.
+ * Fixed promotional campaign updated on 6 September 2026.
  * The ISO deadline includes the UAE UTC+4 offset so it never resets when a
  * visitor refreshes the page or opens it in another time zone.
  */
 export const offerConfig = {
-  deadline: "2026-09-10T23:59:59+04:00",
-  deadlineLabel: "10 September 2026, 11:59 PM UAE time",
+  deadline: "2026-09-11T15:37:14+04:00",
+  deadlineLabel: "11 September 2026, 3:37 PM UAE time",
   packages: [
     {
-      name: "Website + Admin Dashboard",
+      name: "Public Website + Admin Dashboard",
       description:
-        "A professional business website with an admin dashboard for managing your content.",
-      originalPrice: "AED 3,000",
-      offerPrice: "AED 1,500",
-      saving: "Save AED 1,500",
+        "A complete public business website with an admin dashboard for managing your content.",
+      originalPrice: "AED 4,000",
+      offerPrice: "AED 2,000",
+      saving: "Save AED 2,000",
       features: [
-        "Custom business website",
+        "Custom public business website",
         "Content management dashboard",
         "Mobile-first, responsive design",
         "Deployment and handover support",
       ],
       whatsappUrl:
-        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Website%20%2B%20Admin%20Dashboard%20offer%20for%20AED%201%2C500.",
+        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Public%20Website%20%2B%20Admin%20Dashboard%20offer%20for%20AED%202%2C000.",
       featured: true,
     },
     {

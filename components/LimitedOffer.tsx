@@ -35,15 +35,25 @@ export function LimitedOffer() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    const updateCountdown = () => setTimeLeft(calculateTimeLeft());
+    const initialTimeLeft = calculateTimeLeft();
+    setTimeLeft(initialTimeLeft);
 
-    updateCountdown();
-    const timer = window.setInterval(updateCountdown, 1000);
+    if (initialTimeLeft.total === 0) return;
+
+    const timer = window.setInterval(() => {
+      const nextTimeLeft = calculateTimeLeft();
+      setTimeLeft(nextTimeLeft);
+
+      if (nextTimeLeft.total === 0) {
+        window.clearInterval(timer);
+      }
+    }, 1000);
 
     return () => window.clearInterval(timer);
   }, []);
 
-  const isExpired = timeLeft?.total === 0;
+  const isReady = timeLeft !== null;
+  const isExpired = isReady && timeLeft.total === 0;
   const units = [
     { label: "Days", value: timeLeft?.days },
     { label: "Hours", value: timeLeft?.hours },
@@ -83,6 +93,7 @@ export function LimitedOffer() {
           <div
             role="timer"
             aria-live="off"
+            aria-busy={!isReady}
             aria-label={
               isExpired
                 ? "The offer has ended"
@@ -163,7 +174,14 @@ export function LimitedOffer() {
                 ))}
               </ul>
 
-              {isExpired ? (
+              {!isReady ? (
+                <span
+                  aria-disabled="true"
+                  className="mt-7 inline-flex w-full cursor-wait items-center justify-center rounded-oc-sm bg-oc-soft px-5 py-3.5 text-sm font-semibold text-oc-muted"
+                >
+                  Checking Offer…
+                </span>
+              ) : isExpired ? (
                 <span className="mt-7 inline-flex w-full cursor-not-allowed items-center justify-center rounded-oc-sm bg-oc-soft px-5 py-3.5 text-sm font-semibold text-oc-muted">
                   Offer Ended
                 </span>
