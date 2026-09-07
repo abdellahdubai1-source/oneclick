@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/lib/site-config";
@@ -93,7 +94,7 @@ export function Header() {
 
       <nav aria-label="Mobile" className="flex flex-col gap-1 px-5 pt-6">
         {siteConfig.navigation.map((item, index) => (
-          <a
+          <Link
             key={item.href}
             ref={index === 0 ? firstMenuLinkRef : undefined}
             href={item.href}
@@ -102,7 +103,7 @@ export function Header() {
             className="border-b border-oc-line py-4 text-xl font-medium text-oc-ink"
           >
             {item.label}
-          </a>
+          </Link>
         ))}
       </nav>
 
@@ -154,13 +155,13 @@ export function Header() {
           className="hidden items-center gap-10 md:flex"
         >
           {siteConfig.navigation.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="text-[15px] font-medium text-oc-ink/80 transition-colors hover:text-oc-ink"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

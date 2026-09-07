@@ -1,4 +1,5 @@
 import { Logo } from "@/components/Logo";
+import Link from "next/link";
 import { copy, siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -16,7 +17,14 @@ export function Footer() {
             <p className="text-sm text-oc-muted">{copy.footer.lines[2]}</p>
           </div>
 
-          <div className="flex flex-col items-center gap-2 text-center sm:items-end sm:text-right">
+          <div className="flex flex-col items-center gap-5 sm:items-end">
+            <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-medium text-oc-ink sm:justify-end">
+              <Link href="/#services" className="transition-colors hover:text-oc-blue">Services</Link>
+              <Link href="/#growth" className="transition-colors hover:text-oc-blue">Growth</Link>
+              <Link href="/#work" className="transition-colors hover:text-oc-blue">Work</Link>
+              <Link href="/playbook" className="transition-colors hover:text-oc-blue">Playbook</Link>
+            </nav>
+            <div className="flex flex-col items-center gap-2 text-center sm:items-end sm:text-right">
             <a
               href={`mailto:${siteConfig.email}`}
               className="text-sm font-medium text-oc-ink transition-colors hover:text-oc-blue"
@@ -31,6 +39,7 @@ export function Footer() {
             >
               {siteConfig.whatsappDisplay}
             </a>
+            </div>
           </div>
         </div>
 
