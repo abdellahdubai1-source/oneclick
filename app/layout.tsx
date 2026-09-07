@@ -10,14 +10,16 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.brand}`,
   },
   description:
-    "OneClick Digital Studio designs and builds fast, professional websites and practical business systems for growing companies in the UAE. Start a project on WhatsApp today.",
+    "OneClick Digital Studio builds conversion-focused websites, practical business systems, growth marketing journeys, and digital products for growing service businesses.",
   keywords: [
     "OneClick Digital Studio",
     "UAE website design",
     "business website UAE",
     "booking system UAE",
     "Dubai web design studio",
-    "digital growth UAE",
+    "growth marketing UAE",
+    "local service business marketing",
+    "client acquisition playbook",
   ],
   authors: [{ name: siteConfig.brand }],
   creator: siteConfig.brand,
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.brand,
     title: `${siteConfig.brand} | ${siteConfig.primaryTagline}`,
     description:
-      "We design and build fast, professional websites and practical business systems for growing companies in the UAE.",
+      "Conversion-focused websites, business systems, growth marketing, and practical digital products for service businesses.",
     images: [
       {
         url: "/brand/oneclick-logo-primary-transparent.png",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.brand} | ${siteConfig.primaryTagline}`,
     description:
-      "We design and build fast, professional websites and practical business systems for growing companies in the UAE.",
+      "Conversion-focused websites, business systems, growth marketing, and practical digital products for service businesses.",
     images: ["/brand/oneclick-logo-primary-transparent.png"],
   },
   robots: {
@@ -75,7 +77,7 @@ const jsonLd = {
   logo: `${siteConfig.siteUrl}/brand/oneclick-logo-primary-transparent.png`,
   image: `${siteConfig.siteUrl}/brand/oneclick-logo-primary-transparent.png`,
   email: siteConfig.email,
-  areaServed: "AE",
+  areaServed: ["AE", "Worldwide"],
   address: {
     "@type": "PostalAddress",
     addressCountry: "AE",

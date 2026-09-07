@@ -19,7 +19,7 @@ export function Logo({
 }) {
   return (
     <Link
-      href="#top"
+      href="/"
       aria-label={`${siteConfig.brand} — home`}
       className={`inline-flex shrink-0 items-center ${className}`}
     >

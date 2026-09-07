@@ -1,6 +1,6 @@
 # OneClick Digital Studio — Website
 
-Production-ready source for the OneClick Digital Studio marketing website: a single-page, service-led site built to turn UAE business owners into WhatsApp/email enquiries.
+Production-ready source for the OneClick Digital Studio website: a two-route marketing site for websites, business systems, growth marketing, and digital products.
 
 ## Stack
 
@@ -31,7 +31,8 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 app/                  Next.js App Router entry (layout, page, metadata routes)
   layout.tsx          Root layout, global SEO metadata, JSON-LD
-  page.tsx             Assembles the one-page site from components/
+  page.tsx             Assembles the main studio page from components/
+  playbook/page.tsx    Dedicated sales page for the 7-Day Client Acquisition Playbook
   sitemap.ts           /sitemap.xml
   robots.ts            /robots.txt
   icon.png              Favicon (from brand/favicon.png)
@@ -54,12 +55,11 @@ reads from it.
 The header, footer, and browser favicon use the supplied PNG logo files exactly as provided (no
 recoloring, redrawing, or vectorizing). Source files live in `public/brand/`.
 
-## Five-day offer countdown
+## Product checkout
 
-The limited offer section is rendered by `components/LimitedOffer.tsx`. Its fixed UAE deadline,
-prices, package details, and package-specific WhatsApp messages are managed in `offerConfig` inside
-`lib/site-config.ts`. The deadline does not restart when a visitor refreshes the page. Once it passes,
-the countdown reaches zero and the offer buttons change to **Offer Ended**.
+The Playbook sales page reads its product details and CTA URL from `productConfig` in
+`lib/site-config.ts`. Replace the temporary WhatsApp purchase handoff in `checkoutUrl` with the final
+Whop checkout URL before sending paid traffic to the page.
 
 ## Deployment
 

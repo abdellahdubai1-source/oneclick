@@ -14,90 +14,139 @@ export const siteConfig = {
   whatsappDisplay: "+971 56 765 4647",
   whatsappUrl:
     "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20project.",
-  primaryTagline: "Websites That Turn Visitors Into Customers.",
-  descriptor: "Websites / Systems / Digital Growth",
+  primaryTagline: "Digital Systems Built to Attract, Convert, and Grow.",
+  descriptor: "Websites / Growth Marketing / Digital Products",
   navigation: [
-    { label: "Offer", href: "#offer" },
-    { label: "Services", href: "#services" },
-    { label: "Process", href: "#process" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Growth", href: "/#growth" },
+    { label: "Work", href: "/#work" },
+    { label: "Playbook", href: "/playbook" },
+    { label: "About", href: "/#about" },
   ],
 } as const;
 
-/**
- * Fixed promotional campaign updated on 6 September 2026.
- * The ISO deadline includes the UAE UTC+4 offset so it never resets when a
- * visitor refreshes the page or opens it in another time zone.
- */
-export const offerConfig = {
-  deadline: "2026-09-11T15:37:14+04:00",
-  deadlineLabel: "11 September 2026, 3:37 PM UAE time",
-  packages: [
-    {
-      name: "Public Website + Admin Dashboard",
-      description:
-        "A complete public business website with an admin dashboard for managing your content.",
-      originalPrice: "AED 4,000",
-      offerPrice: "AED 2,000",
-      saving: "Save AED 2,000",
-      features: [
-        "Custom public business website",
-        "Content management dashboard",
-        "Mobile-first, responsive design",
-        "Deployment and handover support",
-      ],
-      whatsappUrl:
-        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Public%20Website%20%2B%20Admin%20Dashboard%20offer%20for%20AED%202%2C000.",
-      featured: true,
-    },
-    {
-      name: "Showcase Website",
-      description:
-        "A clean, professional website that presents your business, services, and contact details.",
-      originalPrice: "AED 1,500",
-      offerPrice: "AED 750",
-      saving: "Save AED 750",
-      features: [
-        "Custom showcase website",
-        "Clear services and contact sections",
-        "Mobile-first, responsive design",
-        "Deployment and handover support",
-      ],
-      whatsappUrl:
-        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Showcase%20Website%20offer%20for%20AED%20750.",
-      featured: false,
-    },
+export const productConfig = {
+  name: "The 7-Day Client Acquisition Playbook",
+  shortName: "Client Acquisition Playbook",
+  price: "$69",
+  priceLabel: "$69 one-time beta access",
+  audience:
+    "Cleaning, maintenance, detailing, landscaping, pest-control, beauty, and other local service businesses.",
+  // Replace this temporary purchase handoff with the final Whop checkout URL.
+  checkoutUrl:
+    "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20want%20to%20get%20the%20%247-Day%20Client%20Acquisition%20Playbook%20Beta%20for%20%2469.",
+  checkoutProvider: "Whop checkout will be connected before the paid launch.",
+  betaLimit: "First 25 businesses",
+  modules: [
+    "Build a clear, marketable service offer",
+    "Choose the right audience and campaign objective",
+    "Create paid-ad copy and creative angles",
+    "Turn clicks into focused landing-page enquiries",
+    "Respond and qualify leads on WhatsApp",
+    "Follow up without sounding pushy",
+    "Track the numbers and improve the system",
+  ],
+  bonuses: [
+    "Paid-ad copy templates",
+    "WhatsApp message swipe file",
+    "Offer-builder worksheet",
+    "Lead tracker and follow-up dashboard",
+    "Daily implementation checklist",
   ],
 } as const;
 
 export const copy = {
   hero: {
-    eyebrow: "OneClick Digital Studio — UAE",
-    headline: "Websites That Turn Visitors Into Customers.",
+    eyebrow: "OneClick Digital Studio — Built in the UAE, ready for global work",
+    headline: "Digital systems that help businesses attract, convert, and grow.",
     supporting:
-      "We design and build fast, professional websites and practical business systems for growing companies in the UAE.",
+      "We combine conversion-focused websites, practical business systems, and growth marketing to turn attention into qualified enquiries and customers.",
     primaryCta: "Start a Project",
-    secondaryCta: "Explore Services",
-    trustLine: "Clear scope. Full ownership. Direct support.",
+    secondaryCta: "Explore the Playbook",
+    trustLine: "Strategy, build, launch, and handover — kept clear from day one.",
   },
   services: {
-    title: "What We Build",
+    eyebrow: "What we do",
+    title: "One partner for the system behind your growth.",
+    description:
+      "The website, the campaign, and the follow-up should work together. We build each part around the customer journey, not as disconnected tasks.",
     items: [
       {
-        name: "Business Websites",
+        name: "Conversion-Focused Websites",
         description:
-          "Professional, mobile-first websites that make your business easier to trust and easier to contact.",
+          "Fast, mobile-first websites and landing pages that make the next step obvious and make your business easier to trust.",
       },
       {
-        name: "Booking & Business Systems",
+        name: "Business Systems",
         description:
-          "Practical booking flows, dashboards, customer portals, and operational tools built around how your business works.",
+          "Booking flows, dashboards, customer portals, and operational tools designed around the way your team actually works.",
       },
       {
-        name: "Digital Growth",
+        name: "Growth Marketing",
         description:
-          "Focused landing pages, campaign content, and digital improvements designed to turn attention into qualified enquiries.",
+          "Offer positioning, paid-campaign structure, content direction, conversion journeys, and WhatsApp follow-up systems.",
+      },
+      {
+        name: "Digital Products",
+        description:
+          "Practical playbooks, templates, and implementation tools that help service businesses apply proven digital workflows.",
+      },
+    ],
+  },
+  growth: {
+    eyebrow: "Marketing & growth",
+    title: "A complete path from attention to customer.",
+    description:
+      "Marketing is not one ad or one post. We connect the offer, landing experience, response, and follow-up so every stage has a clear job.",
+    stages: [
+      { number: "01", name: "Attract", detail: "Paid ads and focused content" },
+      { number: "02", name: "Present", detail: "A clear offer and landing page" },
+      { number: "03", name: "Capture", detail: "Simple enquiry and lead flow" },
+      { number: "04", name: "Follow up", detail: "Fast, human WhatsApp response" },
+      { number: "05", name: "Convert", detail: "Quote, booking, and next action" },
+    ],
+    capabilities: [
+      "Meta paid-ad campaign structure",
+      "Offer and message development",
+      "Landing-page conversion planning",
+      "Content and creative direction",
+      "WhatsApp lead follow-up",
+      "Lead tracking and campaign review",
+    ],
+  },
+  work: {
+    eyebrow: "Selected experience",
+    title: "Built around real business workflows.",
+    description:
+      "Our work spans public websites, admin dashboards, customer journeys, operational systems, and campaign assets.",
+    items: [
+      {
+        category: "Corporate platform",
+        title: "Bilingual distribution website and product system",
+        description:
+          "A corporate web presence with structured products, enquiry flows, admin control, deployment, and ownership handover.",
+        tags: ["Website", "Admin", "English + Arabic"],
+      },
+      {
+        category: "Operations system",
+        title: "Delivery workflow from order to proof of delivery",
+        description:
+          "An operational flow connecting admin, rider actions, customer tracking, status updates, and delivery confirmation.",
+        tags: ["Dashboard", "Workflow", "Tracking"],
+      },
+      {
+        category: "Service business",
+        title: "Booking and team-management experience",
+        description:
+          "A customer booking journey supported by scheduling, staff assignment, service management, and reporting concepts.",
+        tags: ["Booking", "Team", "Reports"],
+      },
+      {
+        category: "Marketing system",
+        title: "Offers, landing pages, content, and follow-up",
+        description:
+          "Campaign planning that connects the promise, creative direction, landing-page action, and WhatsApp response process.",
+        tags: ["Paid Ads", "Content", "Conversion"],
       },
     ],
   },
@@ -135,19 +184,19 @@ export const copy = {
     ],
   },
   about: {
-    title: "A Practical Digital Partner in the UAE.",
-    body: "OneClick Digital Studio helps small and growing businesses create a professional digital presence through websites, systems, and focused digital growth. Every project starts with the business goal, stays clear throughout development, and ends with a usable result the client owns.",
+    title: "A practical digital partner, not another disconnected supplier.",
+    body: "OneClick Digital Studio helps small and growing businesses connect their website, marketing, and customer journey. Every project begins with the business goal, moves through clear checkpoints, and ends with a usable result the client can own and operate.",
   },
   finalCta: {
-    headline: "Have a project in mind? Let's build it clearly.",
-    text: "Tell us what your business needs. We'll help you choose the simplest solution that can deliver the result.",
+    headline: "Ready to build a clearer path to customers?",
+    text: "Tell us where your business is now and what result you need. We will help you identify the simplest digital system that can move it forward.",
     primaryCta: "Start on WhatsApp",
     secondaryCta: "hello@oneclickbyabdellah.com",
   },
   footer: {
     lines: [
       "OneClick Digital Studio",
-      "Websites / Systems / Digital Growth",
+      "Websites / Growth Marketing / Digital Products",
       "United Arab Emirates",
     ],
   },
