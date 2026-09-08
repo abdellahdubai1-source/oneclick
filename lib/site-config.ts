@@ -1,154 +1,115 @@
-/**
- * Single source of truth for brand + copy constants.
- * The core brand copy is sourced from the approved asset package. Campaign
- * details are added only when explicitly supplied by OneClick Digital Studio.
- */
-
 export const siteConfig = {
   brand: "OneClick Digital Studio",
   domain: "oneclickbyabdellah.com",
   siteUrl: "https://oneclickbyabdellah.com",
   email: "hello@oneclickbyabdellah.com",
-  location: "United Arab Emirates",
-  socialHandle: "@oneclickbyabdellah",
   whatsappDisplay: "+971 56 765 4647",
-  whatsappUrl:
-    "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20project.",
-  primaryTagline: "Websites That Turn Visitors Into Customers.",
-  descriptor: "Websites / Systems / Digital Growth",
+} as const;
+
+export const productConfig = {
+  name: "The 7-Day Client Acquisition Playbook",
+  shortName: "7-Day Playbook",
+  price: "$69",
+  priceLabel: "$69 one-time",
+  betaLabel: "Beta release · First 25 businesses",
+  description:
+    "A practical implementation playbook for local service businesses that want to turn paid attention into qualified enquiries and booked customers.",
+  // Replace only this URL with your Whop checkout link before the paid launch.
+  checkoutUrl:
+    "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20want%20to%20get%20the%207-Day%20Client%20Acquisition%20Playbook%20Beta%20for%20%2469.",
   navigation: [
-    { label: "Offer", href: "#offer" },
-    { label: "Services", href: "#services" },
-    { label: "Process", href: "#process" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Inside", href: "#inside" },
+    { label: "7-Day Plan", href: "#plan" },
+    { label: "Bonuses", href: "#bonuses" },
+    { label: "FAQ", href: "#faq" },
   ],
-} as const;
-
-/**
- * Fixed promotional campaign updated on 6 September 2026.
- * The ISO deadline includes the UAE UTC+4 offset so it never resets when a
- * visitor refreshes the page or opens it in another time zone.
- */
-export const offerConfig = {
-  deadline: "2026-09-11T15:37:14+04:00",
-  deadlineLabel: "11 September 2026, 3:37 PM UAE time",
-  packages: [
+  modules: [
     {
-      name: "Public Website + Admin Dashboard",
-      description:
-        "A complete public business website with an admin dashboard for managing your content.",
-      originalPrice: "AED 4,000",
-      offerPrice: "AED 2,000",
-      saving: "Save AED 2,000",
-      features: [
-        "Custom public business website",
-        "Content management dashboard",
-        "Mobile-first, responsive design",
-        "Deployment and handover support",
-      ],
-      whatsappUrl:
-        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Public%20Website%20%2B%20Admin%20Dashboard%20offer%20for%20AED%202%2C000.",
-      featured: true,
+      number: "01",
+      title: "Build a clear service offer",
+      text: "Turn a broad service into a focused offer customers can understand quickly.",
     },
     {
-      name: "Showcase Website",
-      description:
-        "A clean, professional website that presents your business, services, and contact details.",
-      originalPrice: "AED 1,500",
-      offerPrice: "AED 750",
-      saving: "Save AED 750",
-      features: [
-        "Custom showcase website",
-        "Clear services and contact sections",
-        "Mobile-first, responsive design",
-        "Deployment and handover support",
-      ],
-      whatsappUrl:
-        "https://wa.me/971567654647?text=Hello%20OneClick%20Digital%20Studio%2C%20I%20would%20like%20to%20claim%20the%205-day%20Showcase%20Website%20offer%20for%20AED%20750.",
-      featured: false,
+      number: "02",
+      title: "Choose the right audience",
+      text: "Define who the campaign is for and the problem your message should lead with.",
+    },
+    {
+      number: "03",
+      title: "Create paid-ad messaging",
+      text: "Use practical hooks, copy structures, and creative angles without relying on creators.",
+    },
+    {
+      number: "04",
+      title: "Focus the landing page",
+      text: "Build a simple enquiry path that removes distractions and makes the next step clear.",
+    },
+    {
+      number: "05",
+      title: "Respond on WhatsApp",
+      text: "Reply quickly, qualify enquiries, and move good prospects toward a booking.",
+    },
+    {
+      number: "06",
+      title: "Follow up consistently",
+      text: "Use a short follow-up cadence so interested prospects are not quietly lost.",
+    },
+    {
+      number: "07",
+      title: "Track and improve",
+      text: "Read a few useful numbers, identify the weak step, and improve the system.",
     },
   ],
-} as const;
-
-export const copy = {
-  hero: {
-    eyebrow: "OneClick Digital Studio — UAE",
-    headline: "Websites That Turn Visitors Into Customers.",
-    supporting:
-      "We design and build fast, professional websites and practical business systems for growing companies in the UAE.",
-    primaryCta: "Start a Project",
-    secondaryCta: "Explore Services",
-    trustLine: "Clear scope. Full ownership. Direct support.",
-  },
-  services: {
-    title: "What We Build",
-    items: [
-      {
-        name: "Business Websites",
-        description:
-          "Professional, mobile-first websites that make your business easier to trust and easier to contact.",
-      },
-      {
-        name: "Booking & Business Systems",
-        description:
-          "Practical booking flows, dashboards, customer portals, and operational tools built around how your business works.",
-      },
-      {
-        name: "Digital Growth",
-        description:
-          "Focused landing pages, campaign content, and digital improvements designed to turn attention into qualified enquiries.",
-      },
-    ],
-  },
-  process: {
-    title: "Simple Process. Clear Progress.",
-    steps: [
-      {
-        number: "01",
-        name: "Discover",
-        description:
-          "We clarify your business, audience, goals, and the exact result the website must create.",
-      },
-      {
-        number: "02",
-        name: "Build",
-        description:
-          "We design and develop the experience with clear checkpoints and direct communication.",
-      },
-      {
-        number: "03",
-        name: "Launch",
-        description:
-          "We test, deploy, hand over ownership, and support the first stage after launch.",
-      },
-    ],
-  },
-  whyOneClick: {
-    title: "Built Like a Business Tool, Not Decoration.",
-    points: [
-      "Clear scope and communication",
-      "Mobile-first design",
-      "Fast, focused user experience",
-      "Full source-code ownership",
-      "Deployment and handover support",
-    ],
-  },
-  about: {
-    title: "A Practical Digital Partner in the UAE.",
-    body: "OneClick Digital Studio helps small and growing businesses create a professional digital presence through websites, systems, and focused digital growth. Every project starts with the business goal, stays clear throughout development, and ends with a usable result the client owns.",
-  },
-  finalCta: {
-    headline: "Have a project in mind? Let's build it clearly.",
-    text: "Tell us what your business needs. We'll help you choose the simplest solution that can deliver the result.",
-    primaryCta: "Start on WhatsApp",
-    secondaryCta: "hello@oneclickbyabdellah.com",
-  },
-  footer: {
-    lines: [
-      "OneClick Digital Studio",
-      "Websites / Systems / Digital Growth",
-      "United Arab Emirates",
-    ],
-  },
+  days: [
+    ["Day 1", "Offer"],
+    ["Day 2", "Audience"],
+    ["Day 3", "Paid Ads"],
+    ["Day 4", "Landing Page"],
+    ["Day 5", "WhatsApp"],
+    ["Day 6", "Follow-Up"],
+    ["Day 7", "Review"],
+  ],
+  bonuses: [
+    "Paid-ad copy templates",
+    "WhatsApp message swipe file",
+    "Offer-builder worksheet",
+    "Lead tracker spreadsheet",
+    "Daily implementation checklist",
+  ],
+  businessTypes: [
+    "Cleaning",
+    "Maintenance",
+    "Landscaping",
+    "Pest control",
+    "Auto detailing",
+    "Beauty & wellness",
+    "Other local services",
+  ],
+  faqs: [
+    {
+      question: "Is this only for cleaning companies?",
+      answer:
+        "No. The examples are designed for local service businesses such as cleaning, maintenance, landscaping, pest control, detailing, beauty, and similar appointment or quote-based services.",
+    },
+    {
+      question: "Do I need a content creator?",
+      answer:
+        "No. The playbook focuses on clear offers and paid-ad creative you can produce without depending on a creator partnership.",
+    },
+    {
+      question: "What exactly will I receive?",
+      answer:
+        "You will receive a downloadable playbook plus practical templates, a worksheet, a lead-tracking spreadsheet, and an implementation checklist. It is not a live course.",
+    },
+    {
+      question: "Is the $69 a subscription?",
+      answer:
+        "No. The Beta price is a one-time payment for the digital product. There is no recurring subscription.",
+    },
+    {
+      question: "Does this guarantee customers?",
+      answer:
+        "No. Results depend on your market, offer, budget, execution, and follow-up. The playbook gives you a structured process, not a guarantee of revenue or customers.",
+    },
+  ],
 } as const;
