@@ -9,6 +9,7 @@ A clean, single-page sales website for **The 7-Day Client Acquisition Playbook**
 - Tailwind CSS v4
 - Lucide icons
 - No database or backend
+- Node.js 20.9 or newer
 
 ## Run locally
 
@@ -28,7 +29,7 @@ npm run build
 
 ## Connect the Whop checkout
 
-The current purchase buttons open a pre-filled OneClick WhatsApp message. When the Whop checkout is ready, open `lib/site-config.ts` and replace the single `checkoutUrl` value with the Whop checkout URL. Every purchase button will update automatically.
+The current purchase buttons clearly hand the customer off to a pre-filled OneClick WhatsApp message. When the Whop checkout is ready, open `lib/site-config.ts` and replace the single `checkoutUrl` value with the Whop checkout URL. Every purchase button will update automatically.
 
 ## Main files
 
@@ -40,4 +41,4 @@ The current purchase buttons open a pre-filled OneClick WhatsApp message. When t
 
 ## Deploy
 
-The project can be deployed to Vercel or any Node host that supports Next.js. Run `npm run build` before deployment.
+The deployment root is the `web` folder—the folder that contains `package.json`. The project can be deployed to Vercel or any Node host that supports Next.js. Run `npm run build` before deployment.

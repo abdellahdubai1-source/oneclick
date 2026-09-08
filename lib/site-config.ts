@@ -9,7 +9,9 @@ export const siteConfig = {
 export const productConfig = {
   name: "The 7-Day Client Acquisition Playbook",
   shortName: "7-Day Playbook",
-  price: "$69",
+  price: 69,
+  currency: "USD",
+  priceDisplay: "$69",
   priceLabel: "$69 one-time",
   betaLabel: "Beta release · First 25 businesses",
   description:

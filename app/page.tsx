@@ -13,15 +13,18 @@ import {
 import { productConfig, siteConfig } from "@/lib/site-config";
 
 const buyButton =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-oc-blue px-6 py-3 text-center text-sm font-bold text-white shadow-[0_12px_30px_rgba(22,119,255,0.25)] transition hover:-translate-y-0.5 hover:bg-oc-blue-hover";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-oc-blue px-6 py-3 text-center text-sm font-bold text-white shadow-[0_12px_30px_rgba(22,119,255,0.25)] transition hover:-translate-y-0.5 hover:bg-oc-blue-hover focus-visible:outline-white";
+
+const compactBuyButton =
+  "inline-flex min-h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-oc-blue px-4 py-2 text-center text-sm font-bold text-white shadow-[0_8px_24px_rgba(22,119,255,0.2)] transition hover:bg-oc-blue-hover focus-visible:outline-white";
 
 const moduleIcons = [Target, MousePointerClick, MessageCircle];
 
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-oc-line/80 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8">
+      <header className="sticky top-0 z-50 border-b border-oc-line/80 bg-white/95 shadow-[0_4px_20px_rgba(6,20,43,0.04)] backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-8">
           <a href="#top" aria-label="OneClick home" className="shrink-0">
             <Image
               src="/brand/oneclick-logo-primary-transparent.png"
@@ -29,7 +32,7 @@ export default function Home() {
               width={181}
               height={60}
               priority
-              className="h-auto w-[145px] sm:w-[166px]"
+              className="h-auto w-[118px] sm:w-[166px]"
             />
           </a>
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -39,8 +42,14 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <a href={productConfig.checkoutUrl} className={`${buyButton} min-h-10 px-4 py-2`}>
-            Get It — {productConfig.price}
+          <a
+            href={productConfig.checkoutUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={compactBuyButton}
+          >
+            <span className="sm:hidden">Get Playbook</span>
+            <span className="hidden sm:inline">Get Playbook — {productConfig.priceDisplay}</span>
           </a>
         </div>
       </header>
@@ -48,21 +57,21 @@ export default function Home() {
       <main id="main">
         <section id="top" className="relative overflow-hidden border-b border-oc-line bg-oc-soft">
           <div className="hero-glow" aria-hidden="true" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-28">
-            <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-oc-line bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-oc-blue">
+          <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 sm:py-20 md:grid-cols-[1.08fr_0.92fr] md:items-center md:gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14 lg:py-24">
+            <div className="min-w-0">
+              <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-oc-line bg-white px-3.5 py-2 text-[0.72rem] font-bold uppercase leading-5 tracking-[0.1em] text-oc-blue sm:px-4 sm:text-xs sm:tracking-[0.14em]">
                 <BookOpen size={16} aria-hidden="true" />
                 A practical playbook for local service businesses
               </div>
-              <h1 className="balance max-w-4xl text-5xl font-black leading-[1.02] tracking-[-0.045em] text-oc-navy sm:text-6xl lg:text-7xl">
+              <h1 className="balance max-w-4xl text-[clamp(2.6rem,10vw,4.5rem)] font-black leading-[1.02] tracking-[-0.045em] text-oc-navy md:text-[clamp(3rem,6vw,4.5rem)]">
                 Turn paid attention into booked customers.
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-oc-muted sm:text-xl">
+              <p className="mt-6 max-w-2xl text-base leading-7 text-oc-muted sm:text-xl sm:leading-8">
                 Connect a clear offer, paid ads, a focused landing page, and WhatsApp follow-up—in one simple 7-day implementation plan.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a href={productConfig.checkoutUrl} className={buyButton}>
-                  Get Beta Access — {productConfig.price}
+                <a href={productConfig.checkoutUrl} target="_blank" rel="noreferrer" className={buyButton}>
+                  Get Beta Access — {productConfig.priceDisplay}
                   <ArrowRight size={18} aria-hidden="true" />
                 </a>
                 <a href="#inside" className="inline-flex min-h-12 items-center justify-center rounded-full border border-oc-line bg-white px-6 py-3 text-sm font-bold text-oc-navy transition hover:border-oc-blue hover:text-oc-blue">
@@ -79,10 +88,13 @@ export default function Home() {
               </div>
             </div>
 
-            <aside className="relative mx-auto w-full max-w-md rounded-[32px] border border-oc-line bg-white p-6 shadow-oc-soft sm:p-8">
-              <span className="absolute right-5 top-5 rounded-full bg-[#eaf3ff] px-3 py-1 text-xs font-extrabold text-oc-blue">BETA</span>
-              <p className="text-sm font-bold uppercase tracking-[0.14em] text-oc-muted">One-time payment</p>
-              <p className="mt-4 text-6xl font-black tracking-[-0.055em] text-oc-navy">{productConfig.price}</p>
+            <aside className="relative mx-auto w-full max-w-md overflow-hidden rounded-[28px] border border-oc-line bg-white p-6 shadow-oc-soft sm:rounded-[32px] sm:p-8">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#1677ff] via-[#65a9ff] to-[#06142b]" aria-hidden="true" />
+              <div className="flex items-center justify-between gap-4 pt-1">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-oc-muted">One-time payment</p>
+                <span className="shrink-0 rounded-full bg-[#eaf3ff] px-3 py-1 text-xs font-extrabold text-oc-blue">BETA</span>
+              </div>
+              <p className="mt-4 text-5xl font-black tracking-[-0.055em] text-oc-navy sm:text-6xl">{productConfig.priceDisplay}</p>
               <p className="mt-2 text-sm font-semibold text-oc-blue">{productConfig.betaLabel}</p>
               <div className="my-7 h-px bg-oc-line" />
               <ul className="space-y-4">
@@ -93,11 +105,11 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href={productConfig.checkoutUrl} className={`${buyButton} mt-8 w-full`}>
-                Get the Playbook
+              <a href={productConfig.checkoutUrl} target="_blank" rel="noreferrer" className={`${buyButton} mt-8 w-full`}>
+                Continue on WhatsApp
                 <ArrowRight size={18} aria-hidden="true" />
               </a>
-              <p className="mt-4 text-center text-xs leading-5 text-oc-muted">Digital product · Educational use · Results are not guaranteed</p>
+              <p className="mt-4 text-center text-xs leading-5 text-oc-muted">Continue with OneClick on WhatsApp · Digital product · Results are not guaranteed</p>
             </aside>
           </div>
         </section>
@@ -188,10 +200,10 @@ export default function Home() {
         <section className="py-20 sm:py-28">
           <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
             <span className="inline-flex rounded-full bg-oc-soft px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-oc-blue">Beta release · First 25 businesses</span>
-            <h2 className="balance mt-6 text-4xl font-black tracking-[-0.04em] text-oc-navy sm:text-6xl">Build your client-acquisition system for {productConfig.price}.</h2>
+            <h2 className="balance mt-6 text-4xl font-black tracking-[-0.04em] text-oc-navy sm:text-6xl">Build your client-acquisition system for {productConfig.priceDisplay}.</h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-oc-muted">One payment. A downloadable playbook, five practical resources, and a focused seven-day implementation plan.</p>
-            <a href={productConfig.checkoutUrl} className={`${buyButton} mt-8`}>
-              Get Beta Access — {productConfig.price}
+            <a href={productConfig.checkoutUrl} target="_blank" rel="noreferrer" className={`${buyButton} mt-8`}>
+              Get Beta Access — {productConfig.priceDisplay}
               <ArrowRight size={18} aria-hidden="true" />
             </a>
             <p className="mt-4 text-xs text-oc-muted">One-time payment · Digital product · No subscription</p>

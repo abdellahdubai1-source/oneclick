@@ -50,8 +50,8 @@ const jsonLd = {
   brand: { "@type": "Brand", name: siteConfig.brand },
   offers: {
     "@type": "Offer",
-    price: "69",
-    priceCurrency: "USD",
+    price: productConfig.price,
+    priceCurrency: productConfig.currency,
     availability: "https://schema.org/InStock",
     url: siteConfig.siteUrl,
   },
