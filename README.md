@@ -1,6 +1,6 @@
 # OneClick — 7-Day Client Acquisition Playbook
 
-A clean, single-page sales website for **The 7-Day Client Acquisition Playbook**. The previous agency-services content has been removed; the root route now focuses only on this digital product.
+A short, clear single-page sales website for **The 7-Day Client Acquisition Playbook**. The root route focuses only on this digital product, with one compact seven-day plan, five resources, a clear WhatsApp order path, and three FAQs.
 
 ## Stack
 
