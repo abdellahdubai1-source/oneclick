@@ -1,74 +1,31 @@
 # Oneclick Digital Solution
 
-A complete, compact, responsive one-page website. Built with plain HTML, CSS and JavaScript, using your original logo. No framework, dependency installation or build step is required. This delivery has not been published or deployed.
+This is the Next.js version of the Oneclick website for the existing `abdellahdubai1-source/oneclick` repository. The new agency website is at `/`. The earlier 7-Day Client Acquisition Playbook page is preserved at `/playbook`.
 
-## Open the website
+## Why the September 16 upload failed
 
-Extract the ZIP, then open `dist/index.html` in a modern browser. Keep the CSS, JavaScript and assets beside it in the supplied folder structure.
+The existing repository was a Next.js project. Commit `1542fa1` replaced its root `package.json` with a dependency-free static preview script, but kept the Next.js `app/`, `lib/`, and `package-lock.json` files. Vercel could no longer run the original build. Uploading a `dist` folder alone does not make that folder the Next.js homepage.
 
-Optional local preview, if Node.js is installed:
+This version restores the original Next.js package settings, places the new homepage inside `app/`, retains the Playbook at `app/playbook/`, and puts agency image/script assets under `public/agency/`. The old `dist/` folder and `preview.mjs` should be removed from the repository because the app no longer uses them.
 
-```sh
-npm run dev
-```
+## How to use this ZIP with the existing repository
 
-Open `http://localhost:4173`. Stop the preview with Ctrl+C. This preview server is for development only.
+1. Open or clone `abdellahdubai1-source/oneclick` on your computer, ideally with GitHub Desktop, and create a new branch from `main`.
+2. Extract this ZIP directly into the **repository root**. You should see `app`, `lib`, `public`, `package.json`, and this README beside the existing `.git` folder. Replace files when asked. Do not upload the ZIP as a single file or put its contents inside another project folder.
+3. Delete the old `dist/` folder and `preview.mjs` from the repository. Keep the original `package-lock.json`, existing files in `public/brand/`, and other original project files.
+4. Review the file changes. Run `npm ci` and `npm run build` locally if Node.js is installed.
+5. When you decide to publish, commit the change and push it to the connected GitHub repository. Vercel may automatically deploy commits or pull requests, according to its project settings. Check the deployment before switching any production traffic.
 
-## Files
+The source ZIP contains the complete corrected repository files, including the original Playbook code and the revised agency site. Generated `node_modules` and `.next` files are excluded.
 
-- `dist/index.html`: page structure, package features, services and FAQ.
-- `dist/styles.css`: colors, responsive layouts and motion preferences.
-- `dist/site.js`: business settings, campaign display, contact links and menu behavior.
-- `dist/assets/oneclick-logo.png`: your original, unmodified logo with transparency preserved.
-- `dist/assets/favicon.svg`: small brand-color cursor favicon.
-- `preview.mjs` and `package.json`: optional dependency-free local preview.
+## Offer and contact settings
 
-## Edit the business settings
+Change campaign timestamps, package prices, and WhatsApp number at the top of `public/agency/site.js` in `SITE_CONFIG`. The original fixed campaign is September 16, 2026 at 12:00 AM to October 1, 2026 at 12:00 AM, UAE time. September 30 is the final offer day. Starter is AED 600 during the campaign (75% off AED 2,400), Business is AED 1,500, and Business System starts at AED 2,000. Prices are one-time project prices. The WhatsApp number is +971 56 765 4647.
 
-The `SITE_CONFIG` block at the top of `dist/site.js` contains the campaign timestamps, package prices, WhatsApp destination and displayed number.
+The promotional price and WhatsApp text expire automatically. The Playbook's earlier content and pricing are preserved as they were in the repository; review that page before promoting its `/playbook` URL.
 
-Configured campaign:
+## Verification
 
-- Start: `2026-09-16T00:00:00+04:00`.
-- End: `2026-10-01T00:00:00+04:00`.
-- Duration: exactly 15 days.
-- Final offer day: September 30, 2026.
-- Visible deadline: September 30, 2026 at 11:59 PM UAE time.
+On September 17, 2026, `npm ci` and `npm run build` succeeded using the existing lockfile and Next.js 16.3.4. Next generated both `/` and `/playbook` as static pages. A local production smoke check fetched the new homepage, old Playbook route, logo, and campaign script successfully. The agency CSS was checked for accidental styling of the Playbook route. The standalone design's desktop/mobile, menu, FAQ, WhatsApp, and countdown states were browser-tested before this migration. The migrated Next.js version was not visually inspected in a browser because its local preview address was unavailable to the browser session; this limitation should be checked before any live deployment.
 
-Configured prices are one-time project prices:
-
-- Starter: AED 600 during the campaign, regular price AED 2,400, saving 75%.
-- Business: AED 1,500.
-- Business System: from AED 2,000.
-
-WhatsApp: `971567654647`. Display number: `056 765 4647`.
-
-Before the start, the page shows the scheduled start and does not advertise the promotional price. During the campaign, it displays the shared fixed deadline. At expiry, the timer stops at zero, “Offer ended.” appears, and the Starter hero copy, card, discount badge, FAQ and WhatsApp message change to current-pricing inquiries. Business and Business System remain available. Nothing stores or resets a visitor-specific deadline.
-
-If changing the campaign to a different time of day, also update the visible-time wording in `updateCampaign()`, which is intentionally written for this midnight-to-midnight UAE campaign. The date labels and campaign duration are derived from the configured timestamps.
-
-For contact-number changes, the JavaScript configuration updates the live site. Also update the same fallback phone links in `index.html` for visitors with JavaScript disabled.
-
-## Host later
-
-Upload the **contents of `dist`** to the root of any static web host. `index.html` should be at the published root. No server backend, API keys, environment variables, database or build command is needed. The optional Node preview server should not be used as the public production server.
-
-All assets and fonts work locally. There are no CDN, font-service or JavaScript-library dependencies. Internet access is required only to open WhatsApp. This site has no contact form, analytics or cookies.
-
-## Verification completed
-
-- Inspected the rendered desktop website in Chrome at 1348px width.
-- Inspected mobile and tablet layouts in browser frames configured to 360px, 390px and 768px widths. Checked narrow-screen and tablet overflow; none was detected.
-- Checked both logo assets, local asset paths, anchor destinations and JavaScript syntax.
-- Tested mobile menu expansion, Escape-to-close, and closing after navigation.
-- Tested FAQ click and keyboard interaction and desktop anchor scroll offset.
-- Verified package-specific WhatsApp destinations and encoded message contents, including the expired Starter message. No messages were sent.
-- Tested a simulated clock before launch, at launch (15 days), at the final second (1 second), at expiry and after expiry (zero). Confirmed AED 600 and 75% promotional copy is removed and the other package prices remain.
-- Confirmed the fixed date interval is exactly 15 days and AED 600 is 75% below AED 2,400.
-- Final inspected page logs contained no website JavaScript errors. Browser-extension diagnostics were excluded.
-
-The final configured dates were not changed to conduct these checks. Temporary verification files are not included in the delivery.
-
-## Practical limitations
-
-The countdown depends on the visitor’s device clock and JavaScript. When JavaScript is disabled, current-pricing contact text is shown safely; the footer links and native FAQ remain available. Rendering was checked in Chrome, including responsive browser frames, not on physical phones or every browser. WhatsApp links were validated without sending inquiries. Hosting and domain setup were not performed.
+No GitHub commit was pushed and no Vercel deployment was initiated while preparing this package.
