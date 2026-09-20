@@ -41,7 +41,7 @@ The fixed campaign runs from **16 September 2026, 00:00 UAE** to **1 October 202
 
 - Starter: AED 600 during the campaign, regularly AED 2,400 (75% off); public site, no admin.
 - Business: AED 1,500, no invented discount; public site, no admin.
-- Business System: from AED 2,000, with admin controls for one agreed content type.
+- Business System: from AED 2,000, with admin controls for one agreed content type. Online payment is not included; booking, payment and customer-account features are quoted separately.
 - WhatsApp: +971 56 765 4647.
 - Domain, hosting, paid tools and additional features are quoted separately.
 

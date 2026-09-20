@@ -18,7 +18,7 @@ server.stdout.on('data', async data => {
       assert.equal(response.status, 200, route);
       if (route === '/') {
         const html = await response.text();
-        for (const content of ['Your business.', 'Better online.', '1,500', '2,000', '971567654647']) assert.ok(html.includes(content), content);
+        for (const content of ['A strong business deserves', '1,500', '2,000', 'Online payment is not included', '971567654647']) assert.ok(html.includes(content), content);
         assert.ok(!html.includes('agency/site.js'), 'Legacy script must not load');
       }
       console.log('PASS HTTP 200:', route);

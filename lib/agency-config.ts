@@ -66,7 +66,8 @@ export const packages = [
       "Inquiries + basic SEO",
       "60 days of post-launch support",
     ],
-    scope: "Booking, payments & accounts quoted separately",
+    scope:
+      "Online payment is not included. Booking, payment and customer accounts are quoted separately.",
     cta: "Discuss Your System",
   },
 ] as const;

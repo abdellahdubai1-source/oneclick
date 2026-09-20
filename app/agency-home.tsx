@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect, useState, memo } from "react";
+import { memo, useEffect, useState } from "react";
 import Image from "next/image";
 import {
+  ArrowRight,
   ArrowUpRight,
-  ArrowDown,
   Check,
-  Plus,
-  Monitor,
-  PenTool,
+  ChevronRight,
+  CircleCheck,
+  Globe2,
+  LayoutTemplate,
   Megaphone,
-  Video,
   MessageCircle,
+  Palette,
+  Plus,
+  Smartphone,
 } from "lucide-react";
 import {
   campaign,
@@ -26,8 +29,8 @@ const outbound = { target: "_blank", rel: "noopener noreferrer" } as const;
 function Logo() {
   return (
     <a
-      href="#top"
       className="oc-logo"
+      href="#top"
       aria-label="Oneclick Digital Solution home"
     >
       <Image
@@ -35,7 +38,7 @@ function Logo() {
         alt="Oneclick Digital Solution"
         width={2048}
         height={546}
-        sizes="(max-width: 600px) 160px, 224px"
+        sizes="(max-width: 600px) 136px, 172px"
         priority
       />
     </a>
@@ -45,116 +48,116 @@ function Logo() {
 const Header = memo(function Header() {
   return (
     <header className="oc-header">
-      <div className="oc-container oc-header-inner">
+      <div className="oc-shell oc-header-inner">
         <Logo />
         <nav aria-label="Main navigation">
           <a href="#packages">Packages</a>
-          <a className="oc-desktop" href="#services">
+          <a href="#services" className="oc-nav-secondary">
             Services
           </a>
-          <a className="oc-desktop" href="#faq">
-            FAQs
+          <a href="#faq" className="oc-nav-secondary">
+            FAQ
           </a>
         </nav>
-        <a
-          className="oc-button oc-button-small oc-header-contact"
-          href={whatsapp()}
-          {...outbound}
-        >
-          <span>Let’s talk</span>
-          <ArrowUpRight size={18} aria-hidden="true" />
-          <span className="oc-sr-only"> on WhatsApp</span>
+        <a className="oc-header-cta" href={whatsapp()} {...outbound}>
+          <MessageCircle size={17} aria-hidden="true" />
+          <span>WhatsApp</span>
         </a>
       </div>
     </header>
   );
 });
 
-const SupportingContent = memo(function SupportingContent() {
+const ServicesAndFaq = memo(function ServicesAndFaq() {
   const services = [
-    { icon: Monitor, name: "Websites", text: "Built for your business." },
     {
-      icon: PenTool,
-      name: "Branding & design",
-      text: "Look the part, everywhere.",
+      icon: LayoutTemplate,
+      name: "Websites",
+      text: "Clear, fast and built around your business.",
+    },
+    {
+      icon: Palette,
+      name: "Branding",
+      text: "A consistent look customers remember.",
     },
     {
       icon: Megaphone,
-      name: "Social & marketing",
-      text: "Connect with your audience.",
+      name: "Marketing",
+      text: "Campaigns designed around your next goal.",
     },
-    { icon: Video, name: "Video & content", text: "Bring your ideas to life." },
+    {
+      icon: Smartphone,
+      name: "Content",
+      text: "Creative content made for today’s platforms.",
+    },
   ];
   const faqs = [
     [
       "What do I need to get started?",
-      "Send us your business name, logo, services and any content or images you have. We’ll confirm the scope and delivery timeline before work starts.",
+      "Your business name, logo, services and any content or images you have. We confirm the scope and timeline before work starts.",
     ],
     [
       "Are domain and hosting included?",
-      "Domain, hosting, paid tools and third-party subscriptions are quoted separately unless included in your written proposal.",
+      "Domain, hosting, paid tools and third-party subscriptions are quoted separately unless they are included in your written proposal.",
     ],
     [
       "Can I update the website myself?",
-      "Choose Business System for admin access to manage one agreed content type, such as products or services. Starter and Business do not include an admin dashboard.",
+      "Business System includes admin access for one agreed content type, such as products or services. Starter and Business do not include an admin dashboard.",
     ],
     [
       "How long will my website take?",
-      "We confirm a delivery date once we understand your project and receive the required content. The timeline depends on the agreed scope.",
+      "We confirm the delivery date after reviewing the scope and receiving the required content.",
     ],
   ];
+
   return (
     <>
       <section
-        className="oc-services oc-container"
+        className="oc-services"
         id="services"
         aria-labelledby="services-title"
       >
-        <div className="oc-section-heading">
-          <div>
-            <p className="oc-eyebrow">MORE THAN A WEBSITE</p>
-            <h2 id="services-title">One partner. More possibilities.</h2>
+        <div className="oc-shell">
+          <div className="oc-section-intro">
+            <p className="oc-kicker">BEYOND THE BUILD</p>
+            <h2 id="services-title">
+              Everything your brand needs to show up well.
+            </h2>
           </div>
-          <p>Other services, quoted to fit your brief.</p>
-        </div>
-        <div className="oc-service-grid">
-          {services.map(({ icon: Icon, name, text }) => (
-            <article key={name}>
-              <Icon size={25} strokeWidth={1.5} aria-hidden="true" />
-              <h3>{name}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
+          <div className="oc-service-grid">
+            {services.map(({ icon: Icon, name, text }, index) => (
+              <article key={name}>
+                <div className="oc-service-number">0{index + 1}</div>
+                <Icon size={22} strokeWidth={1.7} aria-hidden="true" />
+                <h3>{name}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
-      <section
-        className="oc-faq oc-container"
-        id="faq"
-        aria-labelledby="faq-title"
-      >
-        <div>
-          <p className="oc-eyebrow">GOOD TO KNOW</p>
-          <h2 id="faq-title">
-            Clear from
-            <br />
-            the first click.
-          </h2>
-          <p>Have another question?</p>
+
+      <section className="oc-faq oc-shell" id="faq" aria-labelledby="faq-title">
+        <div className="oc-faq-intro">
+          <p className="oc-kicker">STRAIGHT ANSWERS</p>
+          <h2 id="faq-title">Know what you’re getting.</h2>
           <a
-            className="oc-text-link"
             href={whatsapp(
               "Hi Oneclick! I have a question about your website packages.",
             )}
             {...outbound}
           >
-            Ask us on WhatsApp <ArrowUpRight size={17} aria-hidden="true" />
+            Ask us on WhatsApp <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </div>
         <div className="oc-faq-list">
-          {faqs.map(([question, answer]) => (
+          {faqs.map(([question, answer], index) => (
             <details key={question}>
               <summary>
-                {question}
+                <span>
+                  <small>0{index + 1}</small>
+                  {question}
+                </span>
                 <Plus size={20} aria-hidden="true" />
               </summary>
               <p>{answer}</p>
@@ -162,26 +165,24 @@ const SupportingContent = memo(function SupportingContent() {
           ))}
         </div>
       </section>
-      <section
-        className="oc-closing oc-container"
-        aria-labelledby="closing-title"
-      >
+
+      <section className="oc-final oc-shell" aria-labelledby="final-title">
         <div>
-          <p>YOUR NEXT CHAPTER STARTS HERE</p>
-          <h2 id="closing-title">
-            Let’s make your business
-            <br className="oc-desktop" /> look as good as it is.
+          <p className="oc-kicker">READY WHEN YOU ARE</p>
+          <h2 id="final-title">
+            Let’s build something your business can be proud of.
           </h2>
         </div>
         <a
-          className="oc-button oc-button-white"
+          className="oc-primary oc-primary-light"
           href={whatsapp()}
           {...outbound}
         >
-          Start a conversation <ArrowUpRight size={20} aria-hidden="true" />
+          Start on WhatsApp <ArrowUpRight size={18} aria-hidden="true" />
         </a>
       </section>
-      <footer className="oc-footer oc-container">
+
+      <footer className="oc-footer oc-shell">
         <Logo />
         <p>© 2026 Oneclick Digital Solution</p>
         <a href="tel:+971567654647">+971 56 765 4647</a>
@@ -192,6 +193,7 @@ const SupportingContent = memo(function SupportingContent() {
 
 export default function AgencyHome({ initialNow }: { initialNow: number }) {
   const [now, setNow] = useState(initialNow);
+
   useEffect(() => {
     const tick = () => setNow(Date.now());
     const timer = window.setInterval(tick, 1000);
@@ -201,6 +203,7 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
       document.removeEventListener("visibilitychange", tick);
     };
   }, []);
+
   const state = campaignState(now);
   const active = state === "active";
   const time = remainingTime(now);
@@ -214,196 +217,216 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
         Skip to content
       </a>
       <Header />
+
       <main id="main">
-        <section className="oc-hero oc-container" aria-labelledby="hero-title">
-          <div className="oc-hero-copy">
-            <p className="oc-eyebrow">
-              <span className="oc-eyebrow-line" /> SMALL BUSINESS. BIG FIRST
-              IMPRESSION.
-            </p>
-            <h1 id="hero-title">
-              Your business.
-              <br />
-              <span>Better online.</span>
-            </h1>
-            <p className="oc-intro">
-              Beautiful websites. Clear pricing.
-              <br />
-              An easier way for customers to find you.
-            </p>
-            <div className="oc-hero-actions">
-              <a href="#packages" className="oc-button">
-                Explore packages <ArrowDown size={18} aria-hidden="true" />
-              </a>
-              <a className="oc-text-link" href={whatsapp()} {...outbound}>
-                Let’s talk <ArrowUpRight size={18} aria-hidden="true" />
-                <span className="oc-sr-only"> on WhatsApp</span>
-              </a>
+        <section className="oc-hero">
+          <div className="oc-hero-grid" aria-hidden="true" />
+          <div className="oc-hero-glow" aria-hidden="true" />
+          <div className="oc-shell oc-hero-inner">
+            <div className="oc-hero-copy">
+              <p className="oc-hero-kicker">
+                <span /> WEBSITES FOR UAE BUSINESSES
+              </p>
+              <h1>
+                A strong business deserves a <em>strong website.</em>
+              </h1>
+              <p className="oc-hero-text">
+                Professional, mobile-ready websites designed to earn trust and
+                turn visits into conversations.
+              </p>
+              <div className="oc-hero-actions">
+                <a className="oc-primary" href="#packages">
+                  View packages <ArrowRight size={18} aria-hidden="true" />
+                </a>
+                <a className="oc-hero-link" href={whatsapp()} {...outbound}>
+                  Talk to us <ArrowUpRight size={17} aria-hidden="true" />
+                </a>
+              </div>
+              <div className="oc-proof-row">
+                <span>
+                  <CircleCheck size={16} aria-hidden="true" /> Clear scope
+                </span>
+                <span>
+                  <CircleCheck size={16} aria-hidden="true" /> Mobile-first
+                </span>
+                <span>
+                  <CircleCheck size={16} aria-hidden="true" /> Direct support
+                </span>
+              </div>
             </div>
-            <div className="oc-hero-points">
-              <span>
-                <Check size={15} aria-hidden="true" /> Mobile-friendly
-              </span>
-              <span>
-                <Check size={15} aria-hidden="true" /> Built for UAE businesses
-              </span>
-            </div>
-          </div>
-          <aside className="oc-offer" aria-label="Starter website offer">
-            <div className="oc-offer-top">
-              <span>
-                {active ? "THE STARTER OFFER" : "YOUR BUSINESS STARTS HERE"}
-              </span>
-              <span className="oc-offer-badge">
-                {active ? "75% OFF" : "STARTER"}
-              </span>
-            </div>
-            <div className="oc-offer-main">
-              <p>Your new website.</p>
-              {active ? (
-                <>
-                  <div className="oc-hero-price">
+
+            <aside className="oc-offer" aria-label="Starter website offer">
+              <div className="oc-offer-head">
+                <div>
+                  <span className="oc-offer-label">STARTER WEBSITE</span>
+                  <p>Everything you need to look professional online.</p>
+                </div>
+                <span className="oc-offer-badge">
+                  {active ? "75% OFF" : "STARTER"}
+                </span>
+              </div>
+
+              <div className="oc-offer-price">
+                {active ? (
+                  <>
                     <span>AED</span>
                     <strong>600</strong>
-                  </div>
-                  <div className="oc-offer-was">
-                    <s>AED 2,400</s>
-                    <span>One-time project price</span>
-                  </div>
-                </>
-              ) : (
-                <h2 className="oc-offer-alternative">
-                  A fresh start.
-                  <br />A better website.
-                </h2>
-              )}
-              <div className="oc-offer-features">
-                <span>Up to 5 pages</span>
-                <span>Mobile-ready</span>
-                <span>WhatsApp</span>
+                    <div>
+                      <s>AED 2,400</s>
+                      <small>one-time</small>
+                    </div>
+                  </>
+                ) : (
+                  <strong className="oc-current-price">Current pricing</strong>
+                )}
               </div>
+
+              <div className="oc-offer-includes">
+                <span>
+                  <Check size={15} aria-hidden="true" /> Up to 5 pages
+                </span>
+                <span>
+                  <Check size={15} aria-hidden="true" /> Mobile-ready
+                </span>
+                <span>
+                  <Check size={15} aria-hidden="true" /> WhatsApp + basic SEO
+                </span>
+              </div>
+
               <a
-                className="oc-button oc-button-white"
+                className="oc-offer-cta"
                 data-starter-link
                 href={whatsapp(starterMessage)}
                 {...outbound}
               >
-                {active ? "Claim the Starter offer" : "Ask for current pricing"}
-                <ArrowUpRight size={19} aria-hidden="true" />
+                {active ? "Claim this offer" : "Ask for current pricing"}
+                <ArrowUpRight size={18} aria-hidden="true" />
               </a>
-            </div>
-            <div className="oc-countdown-panel">
-              <div className="oc-countdown-heading">
-                <span>
-                  {active
-                    ? "OFFER ENDS IN"
+
+              <div className="oc-timer-wrap">
+                <div className="oc-timer-title">
+                  <span>
+                    {active
+                      ? "Offer ends in"
+                      : state === "upcoming"
+                        ? "Offer starts in"
+                        : "Offer ended"}
+                  </span>
+                  <small>
+                    {state === "upcoming" ? "16 SEP · UAE" : "30 SEP · UAE"}
+                  </small>
+                </div>
+                <div
+                  className="oc-countdown"
+                  role="timer"
+                  aria-live="off"
+                  aria-label={
+                    state === "expired"
+                      ? "Offer ended"
+                      : active
+                        ? "Time until offer ends"
+                        : "Time until offer starts"
+                  }
+                >
+                  {time.map((value, index) => (
+                    <div key={index}>
+                      <b>{String(value).padStart(2, "0")}</b>
+                      <span>{["Days", "Hours", "Mins", "Secs"][index]}</span>
+                    </div>
+                  ))}
+                </div>
+                <p>
+                  {state === "expired"
+                    ? "Contact us for current website pricing."
                     : state === "upcoming"
-                      ? "OFFER STARTS IN"
-                      : "THIS OFFER HAS ENDED"}
-                </span>
-                <span>
-                  {state === "upcoming" ? "16 SEP · UAE" : "30 SEP · UAE"}
-                </span>
+                      ? "Starts 16 September 2026, 00:00 UAE"
+                      : `Ends ${campaign.deadline}`}
+                </p>
               </div>
-              <div
-                className="oc-countdown"
-                role="timer"
-                aria-label={
-                  state === "expired"
-                    ? "Offer ended"
-                    : state === "upcoming"
-                      ? "Time until offer starts"
-                      : "Time until offer ends"
-                }
-                aria-live="off"
-              >
-                {time.map((value, i) => (
-                  <div key={i}>
-                    <b>{String(value).padStart(2, "0")}</b>
-                    <span>{["Days", "Hours", "Mins", "Secs"][i]}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="oc-deadline">
-                {state === "expired"
-                  ? "Ask us about current packages."
-                  : state === "upcoming"
-                    ? "Starts 16 September 2026, 00:00 UAE"
-                    : `Ends ${campaign.deadline}`}
-              </p>
-            </div>
-          </aside>
+            </aside>
+          </div>
         </section>
+
+        <section className="oc-trust-strip">
+          <div className="oc-shell">
+            <div>
+              <Globe2 size={20} aria-hidden="true" />
+              <span>
+                <strong>Built for the UAE</strong>
+                <small>Local business focus</small>
+              </span>
+            </div>
+            <div>
+              <Smartphone size={20} aria-hidden="true" />
+              <span>
+                <strong>Made for every screen</strong>
+                <small>Fast and responsive</small>
+              </span>
+            </div>
+            <div>
+              <MessageCircle size={20} aria-hidden="true" />
+              <span>
+                <strong>Easy to reach you</strong>
+                <small>WhatsApp-ready</small>
+              </span>
+            </div>
+          </div>
+        </section>
+
         <section
           className="oc-packages"
           id="packages"
           aria-labelledby="packages-title"
         >
-          <div className="oc-container">
-            <div className="oc-section-heading">
+          <div className="oc-shell">
+            <div className="oc-packages-head">
               <div>
-                <p className="oc-eyebrow">SIMPLE PACKAGES. NO GUESSWORK.</p>
-                <h2 id="packages-title">Choose your next step.</h2>
+                <p className="oc-kicker">CLEAR PACKAGES</p>
+                <h2 id="packages-title">Choose what fits your business.</h2>
               </div>
               <p>
                 One-time project pricing.
-                <br />A clear scope before we start.
+                <br />
+                Scope agreed before we start.
               </p>
             </div>
-            <div className="oc-pricing-grid">
+
+            <div className="oc-package-grid">
               {packages.map((pkg, index) => (
                 <article
-                  className={`oc-price-card ${index === 0 ? "oc-featured" : ""}`}
+                  className={`oc-package-card ${index === 0 ? "oc-package-featured" : ""}`}
                   key={pkg.name}
                 >
-                  <div className="oc-card-label">
+                  <div className="oc-package-top">
                     <span>0{index + 1}</span>
-                    {index === 0 ? (
-                      <span className="oc-card-badge">
-                        {active ? "LIMITED OFFER · 75% OFF" : "A SIMPLE START"}
-                      </span>
-                    ) : (
-                      <span>
-                        {index === 1 ? "MORE POSSIBILITIES" : "MORE CONTROL"}
-                      </span>
-                    )}
+                    {index === 0 && active ? <small>75% OFF</small> : null}
                   </div>
                   <h3>{pkg.name}</h3>
-                  <p className="oc-card-description">{pkg.description}</p>
+                  <p className="oc-package-description">{pkg.description}</p>
                   <div className="oc-package-price">
                     {index === 0 && !active ? (
                       <strong className="oc-contact-price">
-                        Let’s talk pricing
+                        Ask for pricing
                       </strong>
                     ) : (
                       <>
-                        <div className="oc-price-context">
-                          {index === 0 ? (
-                            <s>AED 2,400</s>
-                          ) : index === 2 ? (
-                            "Starting from"
-                          ) : (
-                            "One-time"
-                          )}
-                        </div>
-                        <div>
-                          <span>AED</span>
-                          <strong>{pkg.price}</strong>
-                        </div>
+                        <span>{index === 2 ? "From" : "AED"}</span>
+                        <strong>{pkg.price}</strong>
+                        {index === 2 ? <small>AED</small> : null}
                       </>
                     )}
                   </div>
                   <ul>
                     {pkg.features.map((feature) => (
                       <li key={feature}>
-                        <Check size={17} aria-hidden="true" />
+                        <Check size={16} aria-hidden="true" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                   <p className="oc-scope">{pkg.scope}</p>
                   <a
-                    className={`oc-button ${index !== 0 ? "oc-button-outline" : ""}`}
+                    className="oc-package-cta"
                     data-starter-link={index === 0 ? true : undefined}
                     href={whatsapp(
                       index === 0
@@ -412,29 +435,23 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
                     )}
                     {...outbound}
                   >
-                    {pkg.cta}
-                    <ArrowUpRight size={18} aria-hidden="true" />
+                    {index === 0 && !active
+                      ? "Ask for current pricing"
+                      : pkg.cta}
+                    <ChevronRight size={18} aria-hidden="true" />
                   </a>
                 </article>
               ))}
             </div>
-            <p className="oc-pricing-note">
-              Domain, hosting and paid tools are quoted separately. Final scope
-              is agreed before work begins.
+            <p className="oc-package-note">
+              Domain, hosting, paid tools and additional features are quoted
+              separately.
             </p>
           </div>
         </section>
-        <SupportingContent />
+
+        <ServicesAndFaq />
       </main>
-      <a
-        className="oc-floating"
-        href={whatsapp()}
-        {...outbound}
-        aria-label="Chat on WhatsApp"
-      >
-        <MessageCircle size={25} aria-hidden="true" />
-        <span>Let’s talk</span>
-      </a>
     </div>
   );
 }
