@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import "./agency.css";
+import "./home.css";
 
 const origin = "https://oneclickbyabdellah.com";
 
