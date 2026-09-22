@@ -1547,6 +1547,15 @@
 .oc-footer-inner a[href^="tel"]:hover {
   color: var(--blue-deep);
 }
+.oc-footer-meta a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--line);
+}
+.oc-footer-meta a:hover {
+  color: var(--blue-deep);
+  text-decoration-color: currentColor;
+}
 @media (max-width: 559px) {
   .oc-footer-inner {
     flex-direction: column;

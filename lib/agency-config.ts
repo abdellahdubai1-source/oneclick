@@ -89,6 +89,30 @@ export const packages = [
   },
 ] as const;
 
+/** Visible on the homepage FAQ section and reused verbatim for its FAQPage structured data. */
+export const faqs = [
+  {
+    question: "What do I need to get started?",
+    answer:
+      "Your business name, logo, services and any content or images you have. We confirm the scope and timeline before work starts.",
+  },
+  {
+    question: "Are domain and hosting included?",
+    answer:
+      "Domain, hosting, paid tools and third-party subscriptions are quoted separately unless they are included in your written proposal.",
+  },
+  {
+    question: "Can I update the website myself?",
+    answer:
+      "Business System includes an admin dashboard for one agreed content type, such as products or services. Starter and Business do not include an admin dashboard.",
+  },
+  {
+    question: "How long will my website take?",
+    answer:
+      "We confirm the delivery date after reviewing the scope and receiving the required content.",
+  },
+] as const;
+
 /** Package-specific WhatsApp text. Promotional wording exists only while the offer is active. */
 export function packageMessage(id: PackageId, offerActive: boolean) {
   switch (id) {

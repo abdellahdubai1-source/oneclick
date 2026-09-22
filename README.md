@@ -29,14 +29,24 @@ No GitHub push or deployment was performed. When you choose to push to a Vercel-
 
 ## Files to edit
 
-- `app/agency-home.tsx`: homepage sections, copy, FAQs and countdown display.
+- `app/agency-home.tsx`: homepage sections, copy and countdown display.
 - `app/components/site-header.tsx`: compact header, cropped original logo, mobile menu.
 - `app/components/hero-scene.tsx`: the CSS 3D hero (public site, mobile view, admin dashboard layers).
 - `app/components/tilt-card.tsx`: desktop-only 3D card tilt.
 - `app/home.css`: homepage-only styling (scoped under `.oc-site`), isolated from the Playbook.
-- `lib/agency-config.ts`: package prices, features, campaign dates, WhatsApp helper and package-specific messages.
-- `app/page.tsx`: request-time homepage rendering, so offer prices are never frozen at build time.
+- `lib/agency-config.ts`: package prices, features, campaign dates, WhatsApp helper, package-specific messages and the homepage FAQ text (shared with its structured data).
+- `app/page.tsx`: request-time homepage rendering (so offer prices are never frozen at build time), homepage `<title>`/description and its Service/FAQ structured data.
+- `lib/seo-config.ts`: business name, description, service area, the six real services (for structured data) and the homepage title/description text.
 - `public/agency/assets/oneclick-logo.png`: supplied original logo, unchanged.
+
+## SEO
+
+- **Metadata**: `app/layout.tsx` sets sitewide defaults (a title template, robots, Open Graph/Twitter defaults, the `#1a7bff` theme color). `app/page.tsx` and `app/playbook/page.tsx` each set their own complete title, description, canonical URL and Open Graph/Twitter fields — Next.js does not merge these nested fields between a layout and a page, so each page's block is self-contained.
+- **Structured data**: `app/layout.tsx` renders sitewide `Organization`/`WebSite` JSON-LD (no address, ratings or social links are included, since none were supplied). The homepage adds `Service` entries for the six real services and an `FAQPage` that mirrors its visible FAQ text exactly. The Playbook keeps its existing `Product` JSON-LD and gains an `FAQPage` matching its own visible FAQs.
+- **Social preview image**: `lib/og-image.tsx` renders one branded 1200×630 image (the real logo, the real headline, the real services and market) with `next/og`, served through `app/opengraph-image.tsx` / `app/twitter-image.tsx` and their `app/playbook/` counterparts (Next does not reliably cascade a root-level image convention to a nested route, so each segment has its own).
+- **Icons and manifest**: the browser-tab and home-screen icons come from the already-branded `app/icon.png` / `app/apple-icon.png` (an unrelated, off-brand `favicon.svg` reference was removed from the metadata). `app/manifest.ts` adds a web app manifest using two new icon sizes generated from the existing `public/brand/oneclick-icon-dark.png` with `sharp` (already a dependency) into `public/icons/`.
+- **Internal linking**: the homepage footer now links to `/playbook`, which previously had no link pointing to it from anywhere on the site.
+- `robots.ts` and `sitemap.ts` were already correct (everything allowed, both routes listed) and are unchanged.
 
 ## Campaign
 
@@ -52,15 +62,15 @@ The marketing page uses WhatsApp inquiry links; it does not collect contact data
 
 ## Preserved content
 
-The existing `/playbook` page, its configuration and its brand assets are unchanged. Its older USD pricing and Studio branding have not been revised; review them separately before promoting that route.
+The existing `/playbook` page's visible content, layout and brand assets are unchanged — only its `<head>` metadata and structured data were extended (see SEO, above), which is why `app/layout.tsx` is no longer byte-for-byte identical to earlier drops (it now carries sitewide metadata and JSON-LD; nothing it renders visually changed). Its older USD pricing and Studio branding have not been revised; review them separately before promoting that route.
 
-The ZIP excludes installed dependencies, build output and local test screenshots. Install dependencies with `npm ci`; no new production dependency was added.
+The ZIP excludes installed dependencies, build output and local test screenshots. Install dependencies with `npm ci`; no new dependency was added — the OG image and manifest icons reuse `next/og`, the already-bundled Geist font files and the existing `sharp` dependency.
 
-## Verification — 20 September 2026
+## Verification — 22 September 2026
 
-`npm ci`, `npm run lint` and `npm run build` passed. `node scripts/check-offer.cjs` renders the actual homepage at six campaign boundary times and checks package prices, discount expiry, WhatsApp messages and countdown values. Run `node scripts/check-server.cjs` after building to smoke-test the homepage, Playbook, logo, robots and sitemap over HTTP.
+`npm ci`, `npm run lint` and `npm run build` passed. `node scripts/check-offer.cjs` renders the actual homepage at six campaign boundary times and checks package prices, discount expiry, WhatsApp messages and countdown values. `node scripts/check-server.cjs` builds and starts the app, then checks the homepage, Playbook, logo, robots, sitemap, manifest, both pages' Open Graph/Twitter images and the manifest icons all return HTTP 200, plus that the homepage's canonical link and Organization/FAQPage structured data are present.
 
-The original Playbook source, `package.json`, `package-lock.json`, `app/layout.tsx`, `app/globals.css` and `lib/site-config.ts` were verified byte-for-byte unchanged. The layout was checked in a browser at 320px, 390px, 768px, 1024px and 1440px: no horizontal overflow at 320px or 390px, and no floating button overlays content (the page has none; the header is the only sticky element). No live WhatsApp message was sent.
+`package.json`, `package-lock.json`, `app/globals.css` and `lib/site-config.ts` remain byte-for-byte unchanged. The rendered output of `/playbook` (everything inside `<body>`) is unchanged; only metadata was added to its `<head>`. The homepage's rendered markup is unchanged except for three short copy edits (the hero eyebrow/subtext and the closing CTA line, each naturally mentioning the UAE) and one added footer link to `/playbook`. Both pages' titles, canonical URLs, Open Graph/Twitter tags and JSON-LD were read directly from the built server's HTML output, not just the browser DOM. The layout was checked in a browser at 320px, 390px, 768px, 1024px and 1440px: no horizontal overflow at 320px or 390px, and no floating button overlays content (the page has none; the header is the only sticky element). No live WhatsApp message was sent.
 
 ## Design and motion notes
 

@@ -3,10 +3,27 @@ import type { Metadata } from "next";
 import { ArrowRight, Check } from "lucide-react";
 import { productConfig, siteConfig } from "@/lib/site-config";
 
+const pageTitle = `${productConfig.name} | ${siteConfig.brand}`;
+
 export const metadata: Metadata = {
-  title: `${productConfig.name} | ${siteConfig.brand}`,
+  // .absolute bypasses the root layout's title template, so this page keeps its own
+  // distinct "OneClick Digital Studio" product branding instead of the agency's suffix.
+  title: { absolute: pageTitle },
   description: productConfig.description,
   alternates: { canonical: `${siteConfig.siteUrl}/playbook` },
+  openGraph: {
+    type: "website",
+    locale: "en_AE",
+    url: `${siteConfig.siteUrl}/playbook`,
+    siteName: siteConfig.brand,
+    title: pageTitle,
+    description: productConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: productConfig.description,
+  },
 };
 
 const productJsonLd = {
@@ -24,6 +41,17 @@ const productJsonLd = {
   },
 };
 
+// Matches the visible FAQ section further down this page verbatim.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: productConfig.faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 const primaryButton =
   "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-oc-blue px-6 py-3 text-center text-sm font-extrabold text-white shadow-[0_12px_30px_rgba(22,119,255,0.24)] transition hover:-translate-y-0.5 hover:bg-oc-blue-hover focus-visible:ring-4 focus-visible:ring-[#a8ccff] sm:w-auto";
 
@@ -34,6 +62,7 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <a href="#main" className="skip-link">Skip to main content</a>
       <header className="sticky top-0 z-50 border-b border-oc-line/80 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">

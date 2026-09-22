@@ -28,6 +28,7 @@ function loadTs(filename) {
   cache.set(filename, loaded);
   const nativeRequire = loaded.require.bind(loaded);
   loaded.require = id => {
+    if (id.endsWith('.css')) return {}; // CSS has no bearing on the SSR output being checked.
     if (id.startsWith('@/') || id.startsWith('.')) {
       const source = resolveSource(filename, id);
       if (source) return loadTs(source);

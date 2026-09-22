@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
+// Loaded here (not the root layout) so /playbook never ships this page's CSS.
+import "./home.css";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -18,6 +20,7 @@ import {
   campaign,
   campaignState,
   contactForPricing,
+  faqs,
   packageMessage,
   packages,
   remainingTime,
@@ -50,25 +53,6 @@ const services = [
     name: "Content",
     text: "Creative content made for today’s platforms.",
   },
-];
-
-const faqs = [
-  [
-    "What do I need to get started?",
-    "Your business name, logo, services and any content or images you have. We confirm the scope and timeline before work starts.",
-  ],
-  [
-    "Are domain and hosting included?",
-    "Domain, hosting, paid tools and third-party subscriptions are quoted separately unless they are included in your written proposal.",
-  ],
-  [
-    "Can I update the website myself?",
-    "Business System includes an admin dashboard for one agreed content type, such as products or services. Starter and Business do not include an admin dashboard.",
-  ],
-  [
-    "How long will my website take?",
-    "We confirm the delivery date after reviewing the scope and receiving the required content.",
-  ],
 ];
 
 const countdownLabels = ["Days", "Hours", "Mins", "Secs"];
@@ -113,14 +97,14 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
                     <ArrowRight size={14} aria-hidden="true" />
                   </a>
                 ) : (
-                  <p className="oc-eyebrow">Websites for UAE businesses</p>
+                  <p className="oc-eyebrow">Web design for UAE businesses</p>
                 )}
                 <h1 id="hero-title">
                   A strong business deserves a <em>strong website.</em>
                 </h1>
                 <p className="oc-hero-text">
-                  Professional, mobile-ready websites designed to earn trust and
-                  turn visits into conversations.
+                  Professional, mobile-ready business websites for UAE companies,
+                  designed to earn trust and turn visits into conversations.
                 </p>
                 <div className="oc-hero-actions">
                   <a className="oc-btn oc-btn-primary" href="#packages">
@@ -368,7 +352,7 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
               </a>
             </div>
             <div className="oc-faq-list oc-reveal">
-              {faqs.map(([question, answer]) => (
+              {faqs.map(({ question, answer }) => (
                 <details key={question}>
                   <summary>
                     <span>{question}</span>
@@ -388,7 +372,7 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
               <div>
                 <p className="oc-kicker">Ready when you are</p>
                 <h2 id="final-title">Let’s build something your business can be proud of.</h2>
-                <p>Tell us about your business on WhatsApp and we’ll suggest the right package.</p>
+                <p>Tell us about your UAE business on WhatsApp and we’ll suggest the right package.</p>
               </div>
               <a className="oc-btn oc-btn-primary oc-btn-lg" href={whatsapp()} {...outbound}>
                 <MessageCircle size={19} aria-hidden="true" /> Start on WhatsApp
@@ -403,7 +387,10 @@ export default function AgencyHome({ initialNow }: { initialNow: number }) {
           <a className="oc-footer-logo" href="#top" aria-label="Oneclick Digital Solution home">
             <Logo />
           </a>
-          <p>© 2026 Oneclick Digital Solution</p>
+          <p className="oc-footer-meta">
+            © 2026 Oneclick Digital Solution ·{" "}
+            <a href="/playbook">7-Day Client Acquisition Playbook</a>
+          </p>
           <a href="tel:+971567654647">+971 56 765 4647</a>
         </div>
       </footer>
