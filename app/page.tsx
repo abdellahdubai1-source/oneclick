@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { connection } from "next/server";
-import { faqs } from "@/lib/agency-config";
 import { business, homeMeta, services, siteUrl } from "@/lib/seo-config";
-import AgencyHome from "./agency-home";
+import StudioHome from "./studio-home";
 
 // A plain string here would NOT get the root layout's title template applied, because
 // this page and the root layout are the same route segment (the template only reaches
@@ -28,42 +26,26 @@ export const metadata: Metadata = {
   },
 };
 
-// Truthful structured data for the services actually offered and the FAQ content
-// visibly shown further down this same page (mainEntity text matches it verbatim).
+// Truthful structured data for the four services actually offered on this page.
 const homeJsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    ...services.map((service) => ({
-      "@type": "Service",
-      name: service.name,
-      description: service.description,
-      provider: { "@id": `${siteUrl}/#organization` },
-      areaServed: business.areaServed,
-    })),
-    {
-      "@type": "FAQPage",
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    },
-  ],
+  "@graph": services.map((service) => ({
+    "@type": "Service",
+    name: service.name,
+    description: service.description,
+    provider: { "@id": `${siteUrl}/#organization` },
+    areaServed: business.areaServed,
+  })),
 };
 
-export default async function Home() {
-  // Never freeze the offer state at build time.
-  await connection();
-  // This is an uncached request-time Server Component; the client receives the same timestamp.
-  // eslint-disable-next-line react-hooks/purity
-  const now = Date.now();
+export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
-      <AgencyHome initialNow={now} />
+      <StudioHome />
     </>
   );
 }
