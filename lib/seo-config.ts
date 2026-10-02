@@ -1,61 +1,55 @@
 /**
  * Sitewide SEO and business-identity data: shared by app/layout.tsx (Organization/WebSite
- * JSON-LD), app/page.tsx (homepage metadata, Service/FAQPage JSON-LD) and the OG image.
- * Kept separate from lib/site-config.ts, which belongs to the unrelated /playbook product.
+ * JSON-LD), app/page.tsx (homepage metadata, Service JSON-LD, contact links), app/manifest.ts
+ * and the Open Graph image. Kept separate from lib/site-config.ts, which belongs to the
+ * unrelated /playbook product.
  */
 
 export const siteUrl = "https://oneclickbyabdellah.com";
 
 export const business = {
-  name: "OneClick Digital Solution",
+  name: "Oneclick Digital Studio",
   url: siteUrl,
   logo: `${siteUrl}/brand/oneclick-icon-dark.png`,
-  whatsapp: "+971567654647",
+  /** Display formats, as shown on the page. */
+  phoneDisplay: "056 765 4647",
+  email: "info@onclickbyabdellah.com",
+  /** Link targets. */
+  phone: "+971567654647",
+  phoneUrl: "tel:+971567654647",
+  emailUrl: "mailto:info@onclickbyabdellah.com",
   whatsappUrl: "https://wa.me/971567654647",
   areaServed: "United Arab Emirates",
   description:
-    "OneClick Digital Solution designs and builds professional business websites, business systems, branding, social media marketing and video content for companies across the UAE.",
+    "Oneclick Digital Studio is a UAE-based digital studio creating professional websites, clear branding, digital marketing support and practical content for businesses.",
 } as const;
 
-/**
- * The business's real services, for Service structured data. Broader and more specific
- * than the four short cards shown on the homepage, but truthful to what is actually offered.
- */
+/** The four services shown on the homepage; also used for Service structured data. */
 export const services = [
   {
-    name: "Website Design",
+    name: "Website Development",
     description:
-      "Custom, mobile-friendly website design built around your business and its services.",
+      "Responsive business websites and practical web tools built around your needs.",
   },
   {
-    name: "Business Websites",
+    name: "Branding & Design",
     description:
-      "Professional public websites that present your business clearly and help visitors get in touch.",
+      "Logos, visual identity, and marketing materials that keep your business consistent.",
   },
   {
-    name: "Business Systems",
+    name: "Digital Marketing",
     description:
-      "Websites with an admin dashboard so you can manage inquiries and one agreed content type yourself.",
+      "Campaign planning, social media support, and messaging for your audience.",
   },
   {
-    name: "Branding",
-    description:
-      "A consistent visual identity that helps customers recognize and remember your business.",
-  },
-  {
-    name: "Social Media Marketing",
-    description:
-      "Campaigns and content planned around your business goals on social platforms.",
-  },
-  {
-    name: "Video and Content",
-    description: "Creative video and content made for today's platforms.",
+    name: "Content Creation",
+    description: "Video editing, social content, and visuals for your digital platforms.",
   },
 ] as const;
 
 /** Homepage title/description. The title is suffixed by the root layout's title template. */
 export const homeMeta = {
-  title: "Business Websites & Web Design UAE",
+  title: "Websites, Branding & Digital Content for UAE Businesses",
   description:
-    "OneClick Digital Solution builds professional, mobile-first websites for UAE businesses. Clear packages, optional admin dashboards, WhatsApp support.",
+    "Oneclick Digital Studio creates professional websites, clear branding, and practical digital content to help UAE businesses connect with customers. Contact us on WhatsApp.",
 } as const;

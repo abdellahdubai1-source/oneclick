@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1a7bff",
+  themeColor: "#ffffff",
 };
 
 // Sitewide, truthful structured data: identifies the business and the website itself.
@@ -60,7 +60,8 @@ const organizationJsonLd = {
         {
           "@type": "ContactPoint",
           contactType: "customer service",
-          telephone: business.whatsapp,
+          telephone: business.phone,
+          email: business.email,
           areaServed: "AE",
           availableLanguage: ["en"],
         },
