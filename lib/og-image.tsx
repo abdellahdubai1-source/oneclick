@@ -1,14 +1,14 @@
-// Shared by app/opengraph-image.tsx and app/twitter-image.tsx: one professional,
-// on-brand preview image (real logo, real headline, real services and market),
-// generated once at build time from assets already in the project.
+// Shared by app/opengraph-image.tsx and app/twitter-image.tsx: one on-brand preview
+// image (real logo mark, the homepage headline, the real services and market),
+// generated at build time from assets already in the project.
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { brand, contact, hero } from "./studio-config";
 
 export const ogImageSize = { width: 1200, height: 630 } as const;
 export const ogImageContentType = "image/png";
-export const ogImageAlt =
-  "OneClick Digital Solution — professional website design and business websites for the UAE";
+export const ogImageAlt = `${brand.name} — websites, branding and content for UAE businesses`;
 
 const root = process.cwd();
 const boldFont = readFile(join(root, "node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf"));
@@ -31,7 +31,7 @@ export async function renderBrandImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "linear-gradient(160deg, #0d2452 0%, #040b1a 65%)",
+          background: "linear-gradient(160deg, #1a1411 0%, #0a0a0a 65%)",
           fontFamily: "Geist",
         }}
       >
@@ -39,33 +39,31 @@ export async function renderBrandImage() {
           {/* eslint-disable-next-line @next/next/no-img-element -- next/og requires a raw <img>, not next/image */}
           <img src={logoSrc} width={64} height={64} alt="" style={{ borderRadius: 16 }} />
           <span style={{ fontSize: 30, fontWeight: 700, color: "#ffffff", letterSpacing: -1 }}>
-            OneClick Digital Solution
+            {brand.name}
           </span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 980 }}>
           <span
             style={{
-              fontSize: 58,
+              fontSize: 60,
               fontWeight: 700,
               color: "#ffffff",
-              lineHeight: 1.15,
+              lineHeight: 1.1,
               letterSpacing: -2,
             }}
           >
-            A strong business deserves a strong website.
+            {hero.headline.join(" ")}
           </span>
-          <span style={{ fontSize: 27, fontWeight: 500, color: "#7db4ff" }}>
-            Website Design · Business Websites · Business Systems — UAE
+          <span style={{ fontSize: 27, fontWeight: 500, color: "#cf8047" }}>
+            Websites · Branding · Digital marketing · Content — UAE
           </span>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontSize: 22, fontWeight: 500, color: "#a9bbdc" }}>
-            oneclickbyabdellah.com
-          </span>
-          <span style={{ fontSize: 22, fontWeight: 500, color: "#a9bbdc" }}>
-            WhatsApp +971 56 765 4647
+          <span style={{ fontSize: 22, fontWeight: 500, color: "#8d8d8d" }}>{brand.locationLabel}</span>
+          <span style={{ fontSize: 22, fontWeight: 500, color: "#8d8d8d" }}>
+            {contact.phoneInternational}
           </span>
         </div>
       </div>

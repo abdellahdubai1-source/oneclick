@@ -1,7 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
+import { Onest } from "next/font/google";
 import { business, homeMeta, siteUrl } from "@/lib/seo-config";
 import "./globals.css";
+
+// Homepage typeface, self-hosted by next/font (no runtime request to Google) with
+// font-display: swap. Geist remains for the unrelated /playbook route.
+const onest = Onest({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-onest",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,7 +49,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1a7bff",
+  themeColor: "#ffffff",
 };
 
 // Sitewide, truthful structured data: identifies the business and the website itself.
@@ -60,7 +70,7 @@ const organizationJsonLd = {
         {
           "@type": "ContactPoint",
           contactType: "customer service",
-          telephone: business.whatsapp,
+          telephone: business.phone,
           areaServed: "AE",
           availableLanguage: ["en"],
         },
@@ -79,7 +89,9 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={GeistSans.variable}>
+    // suppressHydrationWarning: the homepage's inline intro script sets a data attribute on
+    // <html> before React hydrates (see app/components/studio/intro-loader.tsx).
+    <html lang="en" className={`${GeistSans.variable} ${onest.variable}`} suppressHydrationWarning>
       <body>
         <script
           type="application/ld+json"
