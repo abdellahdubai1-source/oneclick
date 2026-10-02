@@ -16,7 +16,6 @@ server.stdout.on('data', async data => {
     const routes = [
       '/',
       '/playbook',
-      '/agency/assets/oneclick-logo.png',
       '/robots.txt',
       '/sitemap.xml',
       '/manifest.webmanifest',
@@ -33,14 +32,16 @@ server.stdout.on('data', async data => {
       if (route === '/') {
         const html = await response.text();
         for (const content of [
-          'A strong business deserves',
-          '1,500',
-          '2,000',
-          'Online payment is not included',
-          '971567654647',
+          'Your business deserves a better digital presence.',
+          'How we can help',
+          'https://goldgravityuae.com',
+          'https://wa.me/971567654647',
+          'tel:+971567654647',
+          'mailto:info@onclickbyabdellah.com',
+          '056 765 4647',
           '<link rel="canonical" href="https://oneclickbyabdellah.com"',
           '"@type":"Organization"',
-          '"@type":"FAQPage"',
+          '"@type":"Service"',
         ]) {
           assert.ok(html.includes(content), content);
         }
@@ -48,7 +49,7 @@ server.stdout.on('data', async data => {
       }
       if (route === '/manifest.webmanifest') {
         const manifest = await response.json();
-        assert.equal(manifest.name, 'OneClick Digital Solution');
+        assert.equal(manifest.name, 'Oneclick Digital Studio');
         assert.ok(manifest.icons.length >= 2, 'manifest icons');
       }
       console.log('PASS HTTP 200:', route);
