@@ -1,29 +1,4 @@
-export const campaign = {
-  start: Date.parse("2026-09-16T00:00:00+04:00"),
-  end: Date.parse("2026-10-01T00:00:00+04:00"),
-  deadline: "30 September 2026, 11:59 PM UAE time",
-} as const;
-
 export const contactForPricing = "Contact us for current pricing";
-
-export function campaignState(now: number) {
-  return now < campaign.start
-    ? "upcoming"
-    : now < campaign.end
-      ? "active"
-      : "expired";
-}
-
-export function remainingTime(now: number) {
-  const target = now < campaign.start ? campaign.start : campaign.end;
-  const seconds = Math.max(0, Math.ceil((target - now) / 1000));
-  return [
-    Math.floor(seconds / 86400),
-    Math.floor(seconds / 3600) % 24,
-    Math.floor(seconds / 60) % 60,
-    seconds % 60,
-  ];
-}
 
 export function whatsapp(
   message = "Hi Oneclick! I'd like to discuss a website for my business.",
@@ -38,10 +13,8 @@ export const packages = [
     id: "starter",
     name: "Starter",
     tagline: "A simple, professional start.",
-    price: "600",
-    regularPrice: "2,400",
-    discount: "75% OFF",
-    priceNote: "one-time during the offer",
+    price: null,
+    priceNote: "Quoted for your project",
     features: [
       "Up to 5 pages",
       "Mobile-friendly public website",
@@ -50,7 +23,7 @@ export const packages = [
       "Basic SEO",
     ],
     excludes: "No admin dashboard",
-    cta: "Get Starter",
+    cta: "Ask about Starter",
   },
   {
     id: "business",
@@ -113,13 +86,11 @@ export const faqs = [
   },
 ] as const;
 
-/** Package-specific WhatsApp text. Promotional wording exists only while the offer is active. */
-export function packageMessage(id: PackageId, offerActive: boolean) {
+/** Each inquiry includes only the current package details. */
+export function packageMessage(id: PackageId) {
   switch (id) {
     case "starter":
-      return offerActive
-        ? "Hi Oneclick! I'm interested in the Starter website package (AED 600 one-time during the offer). Can we discuss my business?"
-        : "Hi Oneclick! I'm interested in the Starter website package. Could you share the current pricing?";
+      return "Hi Oneclick! I'm interested in the Starter website package. Could you share the current pricing?";
     case "business":
       return "Hi Oneclick! I'm interested in the Business website package (AED 1,500 one-time). Can we discuss my business?";
     case "system":

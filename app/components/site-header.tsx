@@ -6,8 +6,9 @@ import { Menu, MessageCircle, X } from "lucide-react";
 import { whatsapp } from "@/lib/agency-config";
 
 const links = [
-  ["#packages", "Packages"],
   ["#services", "Services"],
+  ["#packages", "Packages"],
+  ["#process", "How we work"],
   ["#faq", "FAQ"],
 ] as const;
 
@@ -19,7 +20,7 @@ export function Logo({ priority = false }: { priority?: boolean }) {
         alt="Oneclick Digital Solution"
         width={2048}
         height={546}
-        sizes="160px"
+        sizes="(max-width: 600px) 138px, 170px"
         priority={priority}
       />
     </span>
@@ -41,7 +42,11 @@ export default function SiteHeader() {
   return (
     <header className="oc-header">
       <div className="oc-header-bar">
-        <a className="oc-logo" href="#top" aria-label="Oneclick Digital Solution home">
+        <a
+          className="oc-logo"
+          href="#top"
+          aria-label="Oneclick Digital Solution home"
+        >
           <Logo priority />
         </a>
 
@@ -53,7 +58,12 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <a className="oc-header-cta" href={whatsapp()} target="_blank" rel="noopener noreferrer">
+        <a
+          className="oc-header-cta"
+          href={whatsapp()}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <MessageCircle size={16} aria-hidden="true" />
           <span>WhatsApp</span>
         </a>
@@ -66,7 +76,11 @@ export default function SiteHeader() {
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+          {open ? (
+            <X size={20} aria-hidden="true" />
+          ) : (
+            <Menu size={20} aria-hidden="true" />
+          )}
         </button>
       </div>
 

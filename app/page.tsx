@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { connection } from "next/server";
 import { faqs } from "@/lib/agency-config";
 import { business, homeMeta, services, siteUrl } from "@/lib/seo-config";
 import AgencyHome from "./agency-home";
@@ -51,19 +50,14 @@ const homeJsonLd = {
   ],
 };
 
-export default async function Home() {
-  // Never freeze the offer state at build time.
-  await connection();
-  // This is an uncached request-time Server Component; the client receives the same timestamp.
-  // eslint-disable-next-line react-hooks/purity
-  const now = Date.now();
+export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
-      <AgencyHome initialNow={now} />
+      <AgencyHome />
     </>
   );
 }

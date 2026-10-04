@@ -1,177 +1,105 @@
-"use client";
+import { ArrowUpRight, Check, Globe, Smartphone } from "lucide-react";
 
-import { useEffect, useRef } from "react";
-import { LayoutDashboard, MessageCircle, Smartphone } from "lucide-react";
-
-function Cursor() {
-  return (
-    <svg className="oc-cursor" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M5 3.2 19 11l-6 1.6-2.4 5.8Z"
-        fill="#fff"
-        stroke="#061b37"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/**
- * Layered website showcase: public site, mobile view and admin dashboard in real CSS 3D.
- * Pointer parallax is enabled only for fine pointers without reduced motion; everywhere
- * else the scene is a static, lightweight composition.
- */
+/** Static design concept: decorative, without fabricated results or client claims. */
 export default function HeroScene() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    const hero = el?.closest<HTMLElement>(".oc-hero");
-    if (!el || !hero) return;
-    const fine = window.matchMedia(
-      "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
-    );
-    if (!fine.matches) return;
-
-    let frame = 0;
-    const move = (event: PointerEvent) => {
-      const rect = hero.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        el.style.setProperty("--px", x.toFixed(3));
-        el.style.setProperty("--py", y.toFixed(3));
-      });
-    };
-    const reset = () => {
-      cancelAnimationFrame(frame);
-      el.style.setProperty("--px", "0");
-      el.style.setProperty("--py", "0");
-    };
-
-    hero.addEventListener("pointermove", move);
-    hero.addEventListener("pointerleave", reset);
-    return () => {
-      cancelAnimationFrame(frame);
-      hero.removeEventListener("pointermove", move);
-      hero.removeEventListener("pointerleave", reset);
-    };
-  }, []);
-
   return (
     <div
-      ref={ref}
       className="oc-scene"
       role="img"
-      aria-label="Layered preview of a business website: desktop site, mobile view and admin dashboard"
+      aria-label="Website design concept showing a clean business website on desktop and mobile"
     >
-      <div className="oc-stage" aria-hidden="true">
-        <div className="oc-floor" />
-
-        {/* Back layer: admin dashboard */}
-        <div className="oc-layer oc-dash">
-          <div className="oc-dash-side">
-            <i />
-            <i />
-            <i />
-            <i />
+      <div className="oc-scene-backdrop" aria-hidden="true" />
+      <div className="oc-browser" aria-hidden="true">
+        <div className="oc-browser-bar">
+          <span />
+          <span />
+          <span />
+          <div>
+            <Globe size={10} /> yourbusiness.ae
           </div>
-          <div className="oc-dash-main">
-            <b>Inquiries</b>
-            {[0, 1, 2, 3].map((row) => (
-              <div className="oc-dash-row" key={row}>
-                <span className="oc-avatar" />
-                <span className="oc-lines">
-                  <i />
-                  <i />
-                </span>
-                <em>{row === 0 ? "New" : "Seen"}</em>
-              </div>
-            ))}
-          </div>
+          <ArrowUpRight size={12} />
         </div>
-
-        {/* Middle layer: public website in a browser frame */}
-        <div className="oc-layer oc-browser">
-          <div className="oc-browser-bar">
-            <span />
-            <span />
-            <span />
-            <div>yourbusiness.ae</div>
-          </div>
-          <div className="oc-mock">
-            <div className="oc-site-nav">
-              <span className="oc-site-brand" />
-              <span className="oc-site-links">
-                <i />
-                <i />
-                <i />
-              </span>
-              <span className="oc-site-pill" />
-            </div>
-            <div className="oc-site-hero">
-              <div className="oc-site-copy">
-                <strong>
-                  Your business,
-                  <br />
-                  <em>online.</em>
-                </strong>
-                <i />
-                <i />
-                <span className="oc-site-cta">
-                  Get a quote
-                  <Cursor />
-                  <u />
-                </span>
-              </div>
-              <div className="oc-site-art">
-                <span />
-                <span />
-                <span />
-              </div>
-            </div>
-            <div className="oc-site-cards">
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-          <div className="oc-sheen" />
-        </div>
-
-        {/* Front layer: mobile view */}
-        <div className="oc-layer oc-phone">
-          <div className="oc-phone-notch" />
-          <div className="oc-phone-body">
-            <div className="oc-phone-top">
+        <div className="oc-mock">
+          <div className="oc-mock-nav">
+            <b>
               <span />
-              <i />
-            </div>
-            <div className="oc-phone-art" />
-            <i />
-            <i />
-            <span className="oc-phone-cta" />
-            <div className="oc-phone-cards">
-              <i />
-              <i />
+              YOUR BUSINESS
+            </b>
+            <div>
+              About <span>Services</span>
+              <i>
+                Let’s talk <ArrowUpRight size={8} />
+              </i>
             </div>
           </div>
+          <div className="oc-mock-hero">
+            <div>
+              <span className="oc-mock-label">A NEW CHAPTER</span>
+              <strong>
+                Your next
+                <br />
+                chapter starts
+                <br />
+                <em>here.</em>
+              </strong>
+              <p>
+                A clear vision.
+                <br />A business ready for what’s next.
+              </p>
+              <span className="oc-mock-button">
+                Discover more <ArrowUpRight size={12} />
+              </span>
+            </div>
+            <div className="oc-mock-art">
+              <div className="oc-art-ring" />
+              <div className="oc-art-ball" />
+              <span>
+                Built around
+                <br />
+                your vision.
+              </span>
+            </div>
+          </div>
+          <div className="oc-mock-bottom">
+            <span>Thoughtfully designed.</span>
+            <span>
+              Made to connect. <ArrowUpRight size={10} />
+            </span>
+          </div>
         </div>
-
-        <div className="oc-chip oc-chip-a">
-          <MessageCircle size={14} aria-hidden="true" />
-          WhatsApp inquiries
+      </div>
+      <div className="oc-phone" aria-hidden="true">
+        <div className="oc-phone-notch" />
+        <div className="oc-phone-content">
+          <b>
+            <span />
+            YOUR BUSINESS
+          </b>
+          <div className="oc-phone-art" />
+          <strong>
+            Good business.
+            <br />
+            <em>Great presence.</em>
+          </strong>
+          <p>Your next chapter starts here.</p>
+          <span className="oc-phone-button">
+            Let’s talk <ArrowUpRight size={10} />
+          </span>
+          <div className="oc-phone-lines">
+            <i />
+            <i />
+          </div>
         </div>
-        <div className="oc-chip oc-chip-b">
-          <Smartphone size={14} aria-hidden="true" />
-          Mobile-friendly
-        </div>
-        <div className="oc-chip oc-chip-c">
-          <LayoutDashboard size={14} aria-hidden="true" />
-          Admin dashboard
-        </div>
+      </div>
+      <div className="oc-scene-caption" aria-hidden="true">
+        <span>
+          <Smartphone size={14} />
+          Every screen. One clear experience.
+        </span>
+        <span>
+          <Check size={13} />
+          Design concept
+        </span>
       </div>
     </div>
   );
